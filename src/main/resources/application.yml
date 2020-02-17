@@ -22,6 +22,6 @@ spring:
 
 mybatis:
   mapper-locations: /mapper/**.xml
-  type-aliases-package: com.csdj.enterprise.entity
+  type-aliases-package: com.csdj.enterprise.Entity
 server:
   port: 8080
