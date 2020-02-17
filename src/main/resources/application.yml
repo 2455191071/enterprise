@@ -1,5 +1,5 @@
 
-#显示sql语句的配置129.211.92.241
+#显示sql语句的配置
 logging:
   level:
     com.csdj.demo.dao: debug
