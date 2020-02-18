@@ -16,9 +16,9 @@ spring:
     static-locations: classpath:/static/
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tests?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://47.104.66.220:3306/erpsystem?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
     username: root
-    password:
+    password: 123456
 
 mybatis:
   mapper-locations: /mapper/**.xml
