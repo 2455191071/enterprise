@@ -1,0 +1,27 @@
+
+#显示sql语句的配置
+logging:
+  level:
+    com.csdj.demo.dao: debug
+
+
+#静态资源
+spring:
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .html
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.104.66.220:3306/erpsystem?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: /mapper/**.xml
+  type-aliases-package: com.csdj.enterprise.Entity
+server:
+  port: 8080
