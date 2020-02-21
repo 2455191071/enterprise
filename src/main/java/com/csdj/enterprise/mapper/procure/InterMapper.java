@@ -1,4 +1,4 @@
 package com.csdj.enterprise.mapper.procure;
 
-public interface Mapper {
+public interface InterMapper {
 }

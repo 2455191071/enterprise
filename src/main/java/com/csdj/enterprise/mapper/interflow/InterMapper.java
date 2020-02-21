@@ -1,4 +1,4 @@
 package com.csdj.enterprise.mapper.interflow;
 
-public interface Mapper {
+public interface InterMapper {
 }
