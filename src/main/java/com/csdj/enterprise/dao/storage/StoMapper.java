@@ -1,4 +1,4 @@
 package com.csdj.enterprise.dao.storage;
 
-public interface InterMapper {
+public interface StoMapper {
 }
