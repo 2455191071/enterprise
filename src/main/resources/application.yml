@@ -21,7 +21,7 @@ spring:
     password: 123456
 
 mybatis:
-  mapper-locations: /mapper/**.xml
+  mapper-locations: /dao/**.xml
   type-aliases-package: com.csdj.enterprise.Entity
 server:
   port: 8080
