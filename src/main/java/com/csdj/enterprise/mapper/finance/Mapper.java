@@ -1,4 +1,4 @@
 package com.csdj.enterprise.mapper.article;
 
-public interface InterMapper {
+public interface Mapper {
 }
