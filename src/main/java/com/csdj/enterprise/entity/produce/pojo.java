@@ -1,4 +1,4 @@
 package com.csdj.enterprise.entity.produce;
 
-public class entity {
+public class pojo {
 }

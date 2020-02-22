@@ -1,4 +1,4 @@
 package com.csdj.enterprise.entity.storage;
 
-public class entity {
+public class pojo {
 }

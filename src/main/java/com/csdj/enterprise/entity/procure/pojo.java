@@ -1,4 +1,4 @@
 package com.csdj.enterprise.entity.procure;
 
-public class entity {
+public class pojo {
 }
