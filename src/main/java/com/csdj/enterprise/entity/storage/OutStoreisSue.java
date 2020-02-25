@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 李丹妮
- * 列表外协发料表
+ * 实体类：列表外协发料表
  */
 public class OutStoreisSue {
     private String outstoreissue; //列表外协发料编号

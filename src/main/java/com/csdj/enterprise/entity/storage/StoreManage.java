@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 李丹妮
- * 库管理表
+ * 实体类：库管理表
  */
 public class StoreManage {
     private String sId; //库管理编号

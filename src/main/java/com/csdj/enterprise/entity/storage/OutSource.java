@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 李丹妮
- * 外协表
+ * 实体类：外协表
  */
 public class OutSource {
     private String oId; //编号

@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 李丹妮
- * 同价调拨管理表
+ * 实体类：同价调拨管理表
  */
 public class PardallotManage {
     private String pmId; //同价调拨管理编号
