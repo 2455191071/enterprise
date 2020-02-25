@@ -6,6 +6,7 @@ package com.csdj.enterprise.entity.storage;
  */
 public class Lnventory {
 
+
     private String  lnventoryId ;//库存编号，主键
     private String  lnventoryDate;//  库存日期
     private String  warehouseId;//仓库编号，外键，关联仓库表

@@ -3,7 +3,6 @@ package com.csdj.enterprise.entity.personnel;
 /**
  * Created with IntelliJ IDEA.
  *
- *
  * @Auther: 李金艳
  * @Date: 2020/02/20/12:10
  * @Description:排班实体类
@@ -20,7 +19,6 @@ public class Scheduling {
     private int branchId;//人员范围
 
     public int getScheId() {
-
         return scheId;
     }
 

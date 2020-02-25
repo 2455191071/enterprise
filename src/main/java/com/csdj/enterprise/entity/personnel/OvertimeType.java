@@ -3,7 +3,6 @@ package com.csdj.enterprise.entity.personnel;
 /**
  * Created with IntelliJ IDEA.
  *
- *
  * @Auther: 李金艳
  * @Date: 2020/02/20/11:50
  * @Description:加班类型实体类

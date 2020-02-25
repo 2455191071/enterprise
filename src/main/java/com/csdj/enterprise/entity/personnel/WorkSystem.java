@@ -11,7 +11,6 @@ public class WorkSystem {
     private int systemId;//上班制度编号
     private String systemName;//上班制度名称
 
-
     public int getSystemId() {
         return systemId;
     }
