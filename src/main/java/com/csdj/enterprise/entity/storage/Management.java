@@ -3,6 +3,7 @@ package com.csdj.enterprise.entity.storage;
  * 莫宏峡
  * 实体类：库存流水管理表
  */
+
 public class Management {
     private String managementId;//库存流水编号，主键
     private String managementDate;// 日期
