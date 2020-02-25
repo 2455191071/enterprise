@@ -1,4 +1,4 @@
 package com.csdj.enterprise.entity.logistics;
 
-public class pojo {
+public class logistics {
 }
