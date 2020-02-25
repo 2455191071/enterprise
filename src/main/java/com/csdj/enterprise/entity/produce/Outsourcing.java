@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：外协单表
+ * 实体类：外协单表a
  */
 public class Outsourcing {
     private String outsourcingId;//编号,主键

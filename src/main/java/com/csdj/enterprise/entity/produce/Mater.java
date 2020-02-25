@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：用料计划表
+ * 实体类：用料计划表a
  */
 public class Mater {
     private int materId;//编号,主键自增长

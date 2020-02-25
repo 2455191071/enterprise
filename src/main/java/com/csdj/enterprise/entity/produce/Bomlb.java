@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：物料清单表
+ * 实体类：物料清单表a
  */
 public class Bomlb {
     private String bomId;//编号,主键

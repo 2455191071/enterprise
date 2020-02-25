@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：集中生产表
+ * 实体类：集中生产表a
  */
 public class Productionlb {
     private int productionId;//编号,主键自增长

@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：生产入库表
+ * 实体类：生产入库表a
  */
 public class Pstorage {
     private String pstorageId;//编号,主键

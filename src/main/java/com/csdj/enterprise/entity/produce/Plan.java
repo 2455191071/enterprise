@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：生产计划表
+ * 实体类：生产计划表a
  */
 public class Plan {
     private String planId;//编号,主键

@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：外协入库表
+ * 实体类：外协入库表a
  */
 public class Ostorage {
     private String ostorageId;//编号,主键

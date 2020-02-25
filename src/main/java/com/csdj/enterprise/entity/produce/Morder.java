@@ -1,7 +1,7 @@
 package com.csdj.enterprise.entity.produce;
 /**
  * 李邦
- * 实体类：制令单表
+ * 实体类：制令单表a
  */
 public class Morder {
     private String morderId;//编号,主键
