@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 李丹妮
- * 实体类：生产表
+ * 生产表
  */
 public class ProductionLdn {
     private String pId; //生产编号

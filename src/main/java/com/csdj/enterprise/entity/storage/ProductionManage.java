@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 李丹妮
- * 实体类：生产领料管理表
+ * 生产领料管理表
  */
 public class ProductionManage {
     private String pPickingId; //领料编号
