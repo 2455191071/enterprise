@@ -1,6 +1,6 @@
 package com.csdj.enterprise.entity.finance;
 
-import lombok.Data;
+//import lombok.Data;
 
 /**
  * @program: spring_erp
@@ -8,7 +8,7 @@ import lombok.Data;
  * @author: Yin jie
  * @create: 2020-02-18 12:43
  **/
-@Data
+
 public class ApplyDepartment {
     private int DepartmentId;
     private String  departmentName;

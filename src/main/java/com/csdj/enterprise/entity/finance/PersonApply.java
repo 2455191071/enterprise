@@ -1,6 +1,6 @@
 package com.csdj.enterprise.entity.finance;
 
-import lombok.Data;
+
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  * @author: Yin jie
  * @create: 2020-02-18 12:40
  **/
-@Data
+
 public class PersonApply {
     private int applyId;
     private String person;
