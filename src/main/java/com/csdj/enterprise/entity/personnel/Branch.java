@@ -3,6 +3,7 @@ package com.csdj.enterprise.entity.personnel;
 /**
  * Created with IntelliJ IDEA.
  *
+ *
  * @Auther: 李金艳
  * @Date: 2020/02/19/15:50
  * @Description: 部门实体类

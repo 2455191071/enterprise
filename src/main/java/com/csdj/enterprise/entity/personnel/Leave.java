@@ -2,7 +2,6 @@ package com.csdj.enterprise.entity.personnel;
 
 /**
  * Created with IntelliJ IDEA.
- *
  * @Auther: 李金艳
  * @Date: 2020/02/20/11:26
  * @Description: 请假实体类

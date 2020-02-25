@@ -15,6 +15,7 @@ public class Cluster {
     private String  createDate;//创建时间
 
     public int getCluId() {
+
         return cluId;
     }
 

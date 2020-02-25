@@ -3,6 +3,7 @@ package com.csdj.enterprise.entity.logistics;
 /**
  * Created with IntelliJ IDEA.
  *
+ *
  * @Auther: 李金艳
  * @Date: 2020/02/20/10:40
  * @Description:清理记录实体类
