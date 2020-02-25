@@ -3,6 +3,7 @@ package com.csdj.enterprise.entity.storage;
  * 莫宏峡
  * 实体类：会员表
  */
+
 public class Member {
     private String memberId;//会员编号，主键
     private String memberName;//姓名

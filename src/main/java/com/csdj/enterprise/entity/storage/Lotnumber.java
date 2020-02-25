@@ -3,6 +3,7 @@ package com.csdj.enterprise.entity.storage;
  * 莫宏峡
  * 实体类：批号库存管理表
  */
+
 public class Lotnumber {
     private String lotnumberId ;//批号编号，主键
     private String commodityId ;// 商品编号。外键，关联商品表
