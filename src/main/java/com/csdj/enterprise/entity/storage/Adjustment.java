@@ -4,6 +4,7 @@ package com.csdj.enterprise.entity.storage;
  * 莫宏峡
  * 实体类：调整表
  */
+
 public class Adjustment {
     private String  adjustmentId ;//调整编号，主键
     private String  adjustmentDate;//调整日期
