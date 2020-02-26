@@ -1,5 +1,8 @@
 package com.csdj.enterprise.entity.interflow;
 
+/*
+ * 曾勇彪
+ * */
 public class book {
     private int gid;    //工号
     private String name; //姓名

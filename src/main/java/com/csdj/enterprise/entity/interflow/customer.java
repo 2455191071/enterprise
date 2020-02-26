@@ -1,5 +1,7 @@
 package com.csdj.enterprise.entity.interflow;
-
+/*
+ * 曾勇彪
+ * */
 public class customer {
     private int id; //编号
     private String name;//名称

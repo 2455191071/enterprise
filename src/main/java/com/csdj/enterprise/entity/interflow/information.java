@@ -1,5 +1,8 @@
 package com.csdj.enterprise.entity.interflow;
 
+/*
+* 曾勇彪
+* */
 public class information {
     private String ID;     //编号
     private String title;     //标题
