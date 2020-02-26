@@ -3,6 +3,7 @@ package com.csdj.enterprise.entity.storage;
  * 莫宏峡
  * 实体类：库存总览表
  */
+
 public class Overview {
     private String overviewId;// 库存总览编号。主键，自动增长
     private String lnventoryId;// 库存编号。外键，关联库存报损表
