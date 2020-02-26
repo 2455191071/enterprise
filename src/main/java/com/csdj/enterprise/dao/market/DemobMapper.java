@@ -1,4 +1,4 @@
 package com.csdj.enterprise.dao.market;
 
-public interface InterMapper {
+public interface DemobMapper {
 }

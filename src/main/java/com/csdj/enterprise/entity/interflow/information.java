@@ -1,26 +1,18 @@
 package com.csdj.enterprise.entity.interflow;
 
 public class information {
-    private int lid;    //栏目表id
-    private int ID;     //编号
+    private String ID;     //编号
     private String title;     //标题
     private String attachment;     //附件
     private String founder ;     //创建人
     private String Creation;     //创建时间
 
-    public int getLid() {
-        return lid;
-    }
 
-    public void setLid(int lid) {
-        this.lid = lid;
-    }
-
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

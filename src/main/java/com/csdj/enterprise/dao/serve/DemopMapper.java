@@ -1,4 +1,4 @@
 package com.csdj.enterprise.dao.serve;
 
-public interface InterMapper {
+public interface DemopMapper {
 }

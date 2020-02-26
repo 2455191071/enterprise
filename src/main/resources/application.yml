@@ -20,8 +20,14 @@ spring:
     username: root
     password: 123456
 
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
 mybatis:
-  mapper-locations: /mapper/**.xml
+  mapper-locations: /mapper/*/**.xml
   type-aliases-package: com.csdj.enterprise.entity
 server:
   port: 8080
