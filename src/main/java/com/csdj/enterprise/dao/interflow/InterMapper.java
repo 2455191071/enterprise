@@ -11,4 +11,6 @@ public interface InterMapper {
     /*查询技术部内数据*/
     List<information> selectKnow(@Param("ID")String ID,
                                  @Param("title")String title);
+    /*添加技术部信息*/
+    int addknow(information information);
 }
