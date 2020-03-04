@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+<script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+<link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+<link href="../static/css/intes.css" rel="stylesheet" />
+<script src="../static/js/vue.js" type="text/javascript"></script>
+<body>
+<div class="form-horizontal">
+    <div class="form-group" >
+       <ul style="list-style-type:none;line-height: 26px">
+           <li id="Inter">交流</li>
+           <li id="system">系统</li>
+       </ul>
+    </div>
+    <div id="inters" class="form-group" style="float:left;overflow:auto;background-color:#037EB9;padding:5px;border-right:1px solid #ddd;width:143px;display: none;list-style-type:none;">
+        <ul class="list-group">
+            <li class="list-group-item" id="know"><a>知识库</a></li>
+            <li class="list-group-item"><a>通讯录</a></li>
+            <li class="list-group-item"><a>网址库</a></li>
+        </ul>
+    </div>
+
+    <div id="systems" class="form-group" style="float:left;overflow:auto;background-color:#037EB9;padding:5px;border-right:1px solid #ddd;width:143px;display: none;list-style-type:none;">
+        <ul class="list-group">
+            <li class="list-group-item">运行监控</li>
+        </ul>
+    </div>
+
+    <div id="tabContent" style="display: none">
+        <iframe src='/test/knowges' frameborder="0" scrolling="no" width="1280px"
+                    height="680px"></iframe>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $("#Inter").click(function () {
+        $("#inters").show();
+        $("#systems").hide();
+    })
+    $("#system").click(function () {
+        $("#systems").show();
+        $("#inters").hide();
+    })
+    $("#know").click(function () {
+        $("#tabContent").show()
+    })
+</script>
+</html>

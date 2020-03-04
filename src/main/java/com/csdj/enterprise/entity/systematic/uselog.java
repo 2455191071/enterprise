@@ -1,5 +1,7 @@
 package com.csdj.enterprise.entity.systematic;
-
+/*
+ * 曾勇彪
+ * */
 public class uselog {
     private int logId;//用户id
     private String personnel;//登录人员
