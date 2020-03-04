@@ -4,7 +4,8 @@ package com.csdj.enterprise.entity.produce;
  * 实体类：制令单表
  */
 public class Morder {
-    private String morderId;//编号,主键
+    private int no;//序号
+    private String morderId;//编号
     private String productId;//产品,产品外键
     private int mrp;//MRP运算编号
     private String odate;//制令日期
@@ -19,6 +20,14 @@ public class Morder {
     private int cbmditw;//直接入库可制单数
     private int warehouse;//已入库数
     private String note;//备注
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 
     public String getMorderId() {
         return morderId;

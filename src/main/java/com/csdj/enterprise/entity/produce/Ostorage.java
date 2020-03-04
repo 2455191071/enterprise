@@ -4,7 +4,8 @@ package com.csdj.enterprise.entity.produce;
  * 实体类：外协入库表
  */
 public class Ostorage {
-    private String ostorageId;//编号,主键
+    private int no;//序号
+    private String ostorageId;//编号
     private String date;//日期
     private int mrp;//MRP运算编号
     private String outsourcingId;//外协订单,外协单外键
@@ -20,6 +21,14 @@ public class Ostorage {
     private double  mprice;//材料单价
     private double mcost;//材料费用
     private double amount;//金额
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 
     public String getOstorageId() {
         return ostorageId;
