@@ -4,6 +4,7 @@ package com.csdj.enterprise.entity.produce;
  * 实体类：外协单表
  */
 public class Outsourcing {
+    private int no;//序号
     private String outsourcingId;//编号,主键
     private String productId;//产品,产品外键
     private int mrp;//MRP运算编号
@@ -18,6 +19,14 @@ public class Outsourcing {
     private int outsourcerId;//外协员,职员外键
     private String note;//备注
     private String annex;//附件
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 
     public String getOutsourcingId() {
         return outsourcingId;

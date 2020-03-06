@@ -4,7 +4,8 @@ package com.csdj.enterprise.entity.produce;
  * 实体类：物料清单表
  */
 public class Bomlb {
-    private String bomId;//编号,主键
+    private int no;//序号
+    private String bomId;//编号
     private int defaults;//默认,否为0,是为1
     private String materialsId;//物料,物料外键
     private int noc;//子件数
@@ -12,6 +13,14 @@ public class Bomlb {
     private int founderId;//创建人,用户登录外键
     private String founderdate;//创建时间
     private String note;//备注
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 
     public String getBomId() {
         return bomId;

@@ -4,7 +4,8 @@ package com.csdj.enterprise.entity.produce;
  * 实体类：生产计划表
  */
 public class Plan {
-    private String planId;//编号,主键
+    private int no;//序号
+    private String planId;//编号
     private String productId;//产品,产品外键
     private String odate;//下单日期
     private String delivery;//要求交期
@@ -14,6 +15,14 @@ public class Plan {
     private String term;//备料期限
     private int plannerId;//计划人,职员外键
     private String note;//备注
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 
     public String getPlanId() {
         return planId;
