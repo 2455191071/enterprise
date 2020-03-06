@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.OverviewDao">
+    <resultMap type="Overview" id="detailMap">
+        <id column="overviewId" property="overviewId"/>
+        <result column="overviewQuan" property="overviewQuan" />
+        <result column="commodityId" property="commodityId" />
+        <result column="overviewConse" property="overviewConse" />
+       <result column="overviewOpt" property="overviewOpt" />
+        <result column="overviewInve" property="overviewInve" />
+        <result column="overviewCost" property="overviewCost" />
+        <result column="overviewInto" property="overviewInto" />
+        <result column="overviewOut" property="overviewOut" />
+        <result column="overviewGrint" property="overviewGrint" />
+        <result column="overviewGrout" property="overviewGrout" />
+        <result column="overviewLocki" property="overviewLocki" />
+        <result column="overviewFigur" property="overviewFigur" />
+        <!-- 仓库编号，外键，对象关联仓库表 -->
+        <association property="wareId" column="warehouseId"
+                     select="com.csdj.enterprise.dao.storage.DepotLnDao.findById">
+        </association>
+        <!-- 库存编号。外键，关联库存报损表-->
+        <association property="lnveId" column="lnventoryId"
+                     select="com.csdj.enterprise.dao.storage.LnventoryDao.findById">
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="String"  resultMap="detailMap">
+        select * from overview where overviewId = #{overviewId}
+    </select>
+
+    <select id="findPage" parameterType="map" resultMap="detailMap">
+        select * from overview
+        <where>
+            <if test="commodityId!=null  and commodityId!=''">
+                 commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="warehouseId!=null and warehouseId!=''">
+              and  warehouseId LIKE CONCAT('%',#{wareId},'%')
+            </if>
+        </where>
+             limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from overview
+        <where>
+            <if test="commodityId!=null  and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="warehouseId!=null and warehouseId!=''">
+                and  warehouseId LIKE CONCAT('%',#{wareId},'%')
+            </if>
+
+        </where>
+    </select>
+    <insert id="add" parameterType="Overview">
+            INSERT INTO overview
+            VALUES(#{overviewId},#{lnventoryId},#{commodityId},#{warehouseId},
+                #{overviewQuan},#{overviewConse},#{overviewOpt},#{overviewInve},
+                #{overviewCost},#{overviewInto},#{overviewOut},#{overviewGrint},
+                #{overviewGrout},#{overviewLocki},#{overviewFigur})
+    </insert>
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.ManagementDao">
+    <resultMap type="Management" id="detailMap">
+        <id column="managementId" property="managementId"/>
+        <result column="managementDate" property="managementDate" />
+        <result column="commodityId" property="commodityId" />
+        <result column="managementQuant" property="managementQuant" />
+        <result column="managementAmo" property="managementAmo" />
+        <result column="managementCost" property="managementCost" />
+        <result column="managementCome" property="managementCome" />
+        <result column="managementBei" property="managementBei" />
+        <!-- 仓库编号，外键，对象关联仓库表 -->
+        <association property="wareId" column="warehouseId"
+                     select="com.csdj.enterprise.dao.storage.DepotLnDao.findById">
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="String"  resultMap="detailMap">
+        select * from management where managementId = #{managementId}
+    </select>
+    <select id="findPage" parameterType="map" resultMap="detailMap">
+        select * from management
+        <where>
+            <if test="commodityId!=null and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="managementDate!=null  and managementDate!=''">
+                and managementDate LIKE CONCAT('%',#{managementDate},'%')
+            </if>
+            <if test="Date!=null  and Date!=''">
+                and  managementDate LIKE CONCAT('%',#{Date},'%')
+            </if>
+            <if test="wareId!=null  and wareId!=''">
+                and  warehouseId LIKE CONCAT('%',#{wareId},'%')
+            </if>
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from management
+        <where>
+            <if test="commodityId!=null and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="managementDate!=null  and managementDate!=''">
+                and managementDate LIKE CONCAT('%',#{managementDate},'%')
+            </if>
+            <if test="Date!=null  and Date!=''">
+                and  managementDate LIKE CONCAT('%',#{Date},'%')
+            </if>
+            <if test="wareId!=null  and wareId!=''">
+                and  warehouseId LIKE CONCAT('%',#{wareId},'%')
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

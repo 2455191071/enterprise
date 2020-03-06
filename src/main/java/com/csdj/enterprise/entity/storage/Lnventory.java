@@ -16,6 +16,14 @@ public class Lnventory {
     private double  lnventoryProfit;//  拆装盈利
     private String  staffId;// 职员编号，外键，关联职员表
     private String  lnventoryBei;//备注
+    private Depot wareId; //仓库编号，外键，对象关联仓库表
+    public Depot getWareId() {
+        return wareId;
+    }
+
+    public void setWareId(Depot wareId) {
+        this.wareId = wareId;
+    }
 
     public String getLnventoryId() {
         return lnventoryId;

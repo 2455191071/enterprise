@@ -15,6 +15,16 @@ public class Management {
     private int managementCome;//来源数据
     private String managementBei;// 备注
 
+    private Depot wareId; //仓库编号，外键，对象关联仓库表
+
+    public Depot getWareId() {
+        return wareId;
+    }
+
+    public void setWareId(Depot wareId) {
+        this.wareId = wareId;
+    }
+
     public String getManagementId() {
         return managementId;
     }
