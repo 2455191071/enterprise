@@ -11,7 +11,7 @@ public class Overview {
     private String warehouseId;// 仓库编号。外键，关联仓库表
     private int overviewQuan;// 数量
     private int overviewConse;//保守可用数
-    private int  OverviewOpt;// 乐观可用数
+    private int  overviewOpt;// 乐观可用数
     private double overviewInve;//库存总价
     private double  overviewCost;// 成本单价
     private int overviewInto;//入库数量
@@ -20,6 +20,25 @@ public class Overview {
     private int overviewGrout;//  草稿出库数
     private int overviewLocki;//  锁定数
     private int overviewFigur;// 在途数
+    private Lnventory lnveId;//库存编号。外键，对象关联库存报损表
+    private Depot wareId; //仓库编号，外键，对象关联仓库表
+
+
+    public Lnventory getLnveId() {
+        return lnveId;
+    }
+
+    public void setLnveId(Lnventory lnveId) {
+        this.lnveId = lnveId;
+    }
+
+    public Depot getWareId() {
+        return wareId;
+    }
+
+    public void setWareId(Depot wareId) {
+        this.wareId = wareId;
+    }
 
     public String getOverviewId() {
         return overviewId;
@@ -70,11 +89,11 @@ public class Overview {
     }
 
     public int getOverviewOpt() {
-        return OverviewOpt;
+        return overviewOpt;
     }
 
     public void setOverviewOpt(int overviewOpt) {
-        OverviewOpt = overviewOpt;
+        this.overviewOpt = overviewOpt;
     }
 
     public double getOverviewInve() {

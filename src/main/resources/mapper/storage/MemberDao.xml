@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.MemberDao">
+
+
+    <select id="findById" parameterType="String" resultType="Member">
+        select * from member where memberId = #{memberId}
+    </select>
+
+    <select id="findPage" parameterType="map" resultType="Member">
+        select * from member
+        <where>
+            <if test="memberId!=null and memberId!=''">
+                memberId LIKE CONCAT('%',#{memberId},'%')
+            </if>
+            <if test="memberName!=null  and memberName!=''">
+                and memberName LIKE CONCAT('%',#{memberName},'%')
+            </if>
+            <if test="memberPhone!=null  and memberPhone!=''">
+                and  memberPhone LIKE CONCAT('%',#{memberPhone},'%')
+            </if>
+
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from member
+        <where>
+            <if test="memberId!=null and memberId!=''">
+                memberId LIKE CONCAT('%',#{memberId},'%')
+            </if>
+            <if test="memberName!=null  and memberName!=''">
+                and memberName LIKE CONCAT('%',#{memberName},'%')
+            </if>
+            <if test="memberPhone!=null  and memberPhone!=''">
+                and  memberPhone LIKE CONCAT('%',#{memberPhone},'%')
+            </if>
+
+        </where>
+    </select>
+</mapper>

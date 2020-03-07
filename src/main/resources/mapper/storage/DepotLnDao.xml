@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.DepotLnDao">
+
+
+    <select id="findById" parameterType="String" resultType="Depot">
+        select * from depot where depotId = #{depotId}
+    </select>
+    <select id="findPage" parameterType="map" resultType="Depot">
+        select * from depot
+        <where>
+            <if test="depotId!=null and depotId!=''">
+                depotId LIKE CONCAT('%',#{depotId},'%')
+            </if>
+            <if test="department!=null  and department!=''">
+                and department LIKE CONCAT('%',#{department},'%')
+            </if>
+            <if test="remark!=null  and remark!=''">
+                and  remark LIKE CONCAT('%',#{remark},'%')
+            </if>
+
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from depot
+        <where>
+            <if test="depotId!=null and depotId!=''">
+                depotId LIKE CONCAT('%',#{depotId},'%')
+            </if>
+            <if test="department!=null  and department!=''">
+                and department LIKE CONCAT('%',#{department},'%')
+            </if>
+            <if test="remark!=null  and remark!=''">
+                and  remark LIKE CONCAT('%',#{remark},'%')
+            </if>
+
+        </where>
+    </select>
+</mapper>

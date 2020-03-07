@@ -15,6 +15,16 @@ public class Lotnumber {
     private int lotnumberGo;//  草稿入库数
     private int lotnumberGi;//草稿出库数
 
+    private Lnventory lnveId;//库存编号。外键，对象关联库存报损表
+
+    public Lnventory getLnveId() {
+        return lnveId;
+    }
+
+    public void setLnveId(Lnventory lnveId) {
+        this.lnveId = lnveId;
+    }
+
     public String getLotnumberId() {
         return lotnumberId;
     }

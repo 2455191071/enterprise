@@ -14,6 +14,25 @@ public class Sequence {
     private String memberId ;// 会员编号，外键，关联会员表
     private String sequenceBei ;//     备注
 
+    private Depot wareId; //仓库编号，外键，对象关联仓库表
+    private Member menId; //会员编号，外键，关联会员表
+
+    public Depot getWareId() {
+        return wareId;
+    }
+
+    public void setWareId(Depot wareId) {
+        this.wareId = wareId;
+    }
+
+    public Member getMenId() {
+        return menId;
+    }
+
+    public void setMenId(Member menId) {
+        this.menId = menId;
+    }
+
     public String getSequenceId() {
         return sequenceId;
     }

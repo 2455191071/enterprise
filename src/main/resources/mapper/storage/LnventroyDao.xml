@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.LnventoryDao">
+    <resultMap type="Lnventory" id="detailMap">
+        <id column="lnventoryId" property="lnventoryId"/>
+        <result column="lnventoryDate" property="lnventoryDate" />
+        <result column="lnventoryQuan" property="lnventoryQuan" />
+        <result column="lnventoryAmou" property="lnventoryAmou" />
+        <result column="lnventoryCost" property="lnventoryCost" />
+        <result column="lnventoryProfit" property="lnventoryProfit" />
+        <result column="staffId" property="staffId" />
+        <result column="lnventoryBei" property="lnventoryBei" />
+        <!-- 仓库编号，外键，对象关联仓库表 -->
+        <association property="wareId" column="warehouseId"
+                     select="com.csdj.enterprise.dao.storage.DepotLnDao.findById">
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="String"  resultMap="detailMap">
+        select * from lnventory where lnventoryId = #{lnventoryId}
+    </select>
+    <select id="findPage" parameterType="map" resultMap="detailMap">
+        select * from lnventory
+        <where>
+            <if test="lnventoryId!=null and lnventoryId!=''">
+                lnventoryId LIKE CONCAT('%',#{lnventoryId},'%')
+            </if>
+            <if test="lnventoryDate!=null  and lnventoryDate!=''">
+                and lnventoryDate LIKE CONCAT('%',#{lnventoryDate},'%')
+            </if>
+            <if test="Date!=null  and Date!=''">
+                and  lnventoryDate LIKE CONCAT('%',#{Date},'%')
+            </if>
+            <if test="staffId!=null  and staffId!=''">
+                and  staffId LIKE CONCAT('%',#{staffId},'%')
+            </if>
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from lnventory
+        <where>
+            <if test="lnventoryId!=null and lnventoryId!=''">
+                lnventoryId LIKE CONCAT('%',#{lnventoryId},'%')
+            </if>
+            <if test="lnventoryDate!=null  and lnventoryDate!=''">
+                and lnventoryDate LIKE CONCAT('%',#{lnventoryDate},'%')
+            </if>
+            <if test="lnventoryDate!=null  and lnventoryDate!=''">
+                and  lnventoryDate LIKE CONCAT('%',#{Date},'%')
+            </if>
+            <if test="staffId!=null  and staffId!=''">
+                and  staffId LIKE CONCAT('%',#{staffId},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="Lnventory">
+            INSERT INTO lnventory
+            VALUES(#{lnventoryId},#{lnventoryDate},#{warehouseId},#{lnventoryQuan},
+            #{lnventoryAmou},#{lnventoryCost},#{lnventoryProfit},#{staffId},#{lnventoryBei})
+    </insert>
+
+    <select id="DepotfindPage" parameterType="map" resultMap="detailMap">
+        select * from lnventory
+        <where>
+            <if test="lnventoryId!=null and lnventoryId!=''">
+                lnventoryId LIKE CONCAT('%',#{lnventoryId},'%')
+            </if>
+            <if test="lnventoryDate!=null  and lnventoryDate!=''">
+                and lnventoryDate LIKE CONCAT('%',#{lnventoryDate},'%')
+            </if>
+            <if test="Date!=null  and Date!=''">
+                and  lnventoryDate LIKE CONCAT('%',#{Date},'%')
+            </if>
+            <if test="staffId!=null  and staffId!=''">
+                and  staffId LIKE CONCAT('%',#{staffId},'%')
+            </if>
+            <if test="lnventoryBei!=null  and lnventoryBei!=''">
+                and  lnventoryBei LIKE CONCAT('%',#{lnventoryBei},'%')
+            </if>
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="DepotCount" resultType="int" parameterType="map">
+        select count(*) from lnventory
+        <where>
+            <if test="lnventoryId!=null and lnventoryId!=''">
+                lnventoryId LIKE CONCAT('%',#{lnventoryId},'%')
+            </if>
+            <if test="lnventoryDate!=null  and lnventoryDate!=''">
+                and lnventoryDate LIKE CONCAT('%',#{lnventoryDate},'%')
+            </if>
+            <if test="lnventoryDate!=null  and lnventoryDate!=''">
+                and  lnventoryDate LIKE CONCAT('%',#{Date},'%')
+            </if>
+            <if test="staffId!=null  and staffId!=''">
+                and  staffId LIKE CONCAT('%',#{staffId},'%')
+            </if>
+            <if test="lnventoryBei!=null  and lnventoryBei!=''">
+                and  lnventoryBei LIKE CONCAT('%',#{lnventoryBei},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

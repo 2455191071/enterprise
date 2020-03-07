@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.LotnumberDao">
+    <resultMap type="Lotnumber" id="detailMap">
+        <id column="lotnumberId" property="lotnumberId"/>
+        <result column="commodityId" property="commodityId" />
+        <result column="lotnumberLot" property="lotnumberLot" />
+        <result column="lotnumberCan" property="lotnumberCan" />
+        <result column="lotnumberOut" property="lotnumberOut" />
+        <result column="lotnumberInto" property="lotnumberInto" />
+        <result column="lotnumberGo" property="lotnumberGo" />
+        <result column="lotnumberGi" property="lotnumberGi" />
+        <!-- 库存编号。外键，关联库存报损表-->
+        <association property="lnveId" column="lnventoryId"
+                     select="com.csdj.enterprise.dao.storage.LnventoryDao.findById">
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="String"  resultMap="detailMap">
+        select * from lotnumber where lotnumberId = #{lotnumberId}
+    </select>
+
+    <select id="findPage" parameterType="map" resultMap="detailMap">
+        select * from lotnumber
+        <where>
+            <if test="commodityId!=null and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="lotnumberId!=null  and lotnumberId!=''">
+                and lotnumberId LIKE CONCAT('%',#{lotnumberId},'%')
+            </if>
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from lotnumber
+        <where>
+            <if test="commodityId!=null and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="lotnumberId!=null  and lotnumberId!=''">
+                and lotnumberId LIKE CONCAT('%',#{lotnumberId},'%')
+            </if>
+        </where>
+    </select>
+
+
+
+
+</mapper>
