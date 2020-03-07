@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>物料清单管理</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-4"><h2>物料清单管理</h2></div>
+    </div>
+
+    <div class="row">
+        <form action="/Bomlb/findSelect" method="post">
+            <div class="col-sm-1">物料:</div>
+            <div class="col-sm-3">
+                <input type="text" placeholder="请输入物料"name="materialsId"/>
+            </div>
+            <div class="col-sm-1">仓库:</div>
+            <div class="col-sm-3">
+                <input type="text" placeholder="请输入仓库"name="warehouseId"/>
+            </div>
+            <input type="submit" value="提交查询" class="btn btn-info"/>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12"></div>
+        <table class="table table-bordered table-hover ">
+            <thead>
+            <tr class="info">
+                <th>编号</th>
+                <th>物料</th>
+                <th>仓库</th>
+                <th>子件数</th>
+                <th>默认</th>
+                <th>备注</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="p:${pu.listf}">
+                <td><a th:href="@{/Bomlb/bomIdSelect(bomId=${p.bomId})}"><i th:text="${p.bomId}"></i></a></td>
+                <td th:text="${p.materialsId}"></td>
+                <td th:text="${p.warehouseId}"></td>
+                <td th:text="${p.noc}"></td>
+                <td th:text="${p.defaults}"></td>
+                <td th:text="${p.note}"></td>
+                <td><a th:href="@{/Bomlb/findInsert}">增加</a></td>
+            </tr>
+            </thead>
+        </table>
+        <div>
+            <a th:href="@{/Bomlb/findSelect(index=1,sortId=${sortId})}">首页</a>
+
+            <span th:switch="${pu.pageIndex}">
+                                <a th:case="1"
+                                   th:href="@{/Bomlb/findSelect(index=1,sortId=${sortId})}">上一页</a>
+                                <a th:case="*"
+                                   th:href="@{/Bomlb/findSelect(index=${pu.pageIndex-1},sortId=${sortId})}">上一页</a>
+                                </span>
+
+            <span th:switch="${pu.pageIndex}">
+                                <a th:case="${pu.pageNumber}"
+                                   th:href="@{/Bomlb/findSelect(index=${pu.pageNumber},sortId=${sortId})}">下一页</a>
+                                <a th:case="*"
+                                   th:href="@{/Bomlb/findSelect(index=${pu.pageIndex+1},sortId=${sortId})}">下一页</a>
+                                </span>
+
+            <a th:href="@{/Bomlb/findSelect(index=${pu.pageNumber},sortId=${sortId})}">尾页</a>
+            &nbsp;&nbsp;
+            第 <span th:text="${pu.pageIndex}"></span> 页 / 共
+            <span	th:text="${pu.pageNumber}"></span> 页
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

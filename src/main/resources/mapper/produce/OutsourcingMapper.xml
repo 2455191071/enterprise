@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.produce.OutsourcingMapper">
+    <resultMap id="OutsourcingMap" type="Outsourcing">
+        <id property="no" column="no"></id>
+        <result property="outsourcingId" column="outsourcingId"></result>
+        <result property="mrp" column="mrp"></result>
+        <result property="date" column="date"></result>
+        <result property="delivery" column="delivery"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="warehouse" column="warehouse"></result>
+        <result property="stored" column="stored"></result>
+        <result property="note" column="note"></result>
+        <result property="annex" column="dss"></result>
+        <association property="productId" column="productId"/>
+        <association property="planId" column="planId"/>
+        <association property="supplierId" column="supplierId"/>
+        <association property="contactId" column="contactId"/>
+        <association property="outsourcerId" column="outsourcerId"/>
+    </resultMap>
+    <select id="findSelect" resultMap="OutsourcingMap">
+        SELECT * FROM outsourcing
+        <where>
+            <if test="outsourcerId!=null">
+                outsourcerId=#{outsourcerId}
+            </if>
+            <if test="outsourcerId!=null and supplierId!=null">
+                and
+            </if>
+            <if test="supplierId!=null">
+                supplierId=#{supplierId}
+            </if>
+            <if test="supplierId!=null and contactId!=null || outsourcerId!=null and contactId!=null">
+                and
+            </if>
+            <if test="contactId!=null">
+                contactId=#{contactId}
+            </if>
+        </where>
+        limit #{begin},#{end}
+    </select>
+    <select id="total" resultType="int">
+        SELECT COUNT(1) FROM outsourcing
+        <where>
+            <if test="outsourcerId!=null">
+                outsourcerId=#{outsourcerId}
+            </if>
+            <if test="outsourcerId!=null and supplierId!=null">
+                and
+            </if>
+            <if test="supplierId!=null">
+                supplierId=#{supplierId}
+            </if>
+            <if test="supplierId!=null and contactId!=null || outsourcerId!=null and contactId!=null">
+                and
+            </if>
+            <if test="contactId!=null">
+                contactId=#{contactId}
+            </if>
+        </where>
+    </select>
+    <select id="outsourcingIdSelect" resultType="Outsourcing">
+        SELECT * FROM outsourcing where outsourcingId=#{outsourcingId}
+    </select>
+    <delete id="outsourcingIdDelete">
+        DELETE FROM outsourcing WHERE outsourcingId=#{outsourcingId}
+    </delete>
+    <update id="findUpdate">
+        UPDATE outsourcing SET  date=#{date},delivery=#{delivery},quantity=#{quantity},supplierId=#{supplierId},contactId=#{contactId},outsourcerId=#{outsourcerId},note=#{note} where outsourcingId = #{id}
+    </update>
+</mapper>

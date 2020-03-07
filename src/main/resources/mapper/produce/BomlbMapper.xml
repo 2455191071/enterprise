@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.produce.BomlbMapper">
+    <resultMap id="BomlbMap" type="Bomlb">
+        <id property="no" column="no"></id>
+        <result property="bomId" column="bomId"></result>
+        <result property="defaults" column="defaults"></result>
+        <result property="noc" column="noc"></result>
+        <result property="founderdate" column="founderdate"></result>
+        <result property="note" column="note"></result>
+        <association property="materialsId" column="materialsId"/>
+        <association property="warehouseId" column="warehouseId"/>
+        <association property="founderId" column="founderId"/>
+    </resultMap>
+    <select id="findSelect" resultMap="BomlbMap">
+        SELECT * FROM bomlb
+        <where>
+            <if test="materialsId!=null">
+                materialsId=#{materialsId}
+            </if>
+            <if test="materialsId!=null and warehouseId!=null">
+                and
+            </if>
+            <if test="warehouseId!=null">
+                warehouseId=#{warehouseId}
+            </if>
+        </where>
+        limit #{begin},#{end}
+    </select>
+    <select id="total" resultType="int">
+        SELECT COUNT(1) FROM bomlb
+        <where>
+            <if test="materialsId!=null">
+                materialsId=#{materialsId}
+            </if>
+            <if test="materialsId!=null and warehouseId!=null">
+                and
+            </if>
+            <if test="warehouseId!=null">
+                warehouseId=#{warehouseId}
+            </if>
+        </where>
+    </select>
+    <insert id="findInsert" parameterType="Bomlb">
+        INSERT INTO bomlb VALUE(null,#{bomId},#{defaults},#{materialsId},#{noc},#{warehouseId},#{founderId},#{founderdate},#{note})
+    </insert>
+    <select id="bomIdSelect" resultType="Bomlb">
+        SELECT * FROM bomlb where bomId=#{bomId}
+    </select>
+    <delete id="bomIdDelete">
+        DELETE FROM bomlb WHERE bomId=#{bomId}
+    </delete>
+    <update id="findUpdate">
+        UPDATE bomlb SET  warehouseId=#{warehouseId},note=#{note} where bomId = #{id}
+    </update>
+</mapper>

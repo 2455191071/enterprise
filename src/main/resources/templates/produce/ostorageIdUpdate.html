@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>修改外协入库</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h4>修改外协入库</h4>
+    <hr>
+    <form action="/Ostorage/findUpdate" method="post" id="info">
+        <div class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">原编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="id" th:value="${ostorage.ostorageId}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="ostorageId" id="ostorageId" th:value="${ostorage.ostorageId}">
+                </div>
+                <label class="col-sm-1 control-label">日期</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control"  name="date" id="date" th:value="${ostorage.date}">
+                </div>
+                <label class="col-sm-1 control-label">MRP运算编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"  name="mrp" th:value="${ostorage.mrp}" readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">外协订单</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="outsourcingId" th:value="${ostorage.outsourcingId}" readOnly=readOnly>
+                </div>
+                <label class="col-sm-1 control-label">产品</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="productId" id="productId" th:value="${ostorage.productId}">
+                </div>
+                <label class="col-sm-1 control-label">批号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="number" th:value="${ostorage.number}" readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">仓库</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="warehouseId" id="warehouseId" th:value="${ostorage.warehouseId}">
+                </div>
+                <label class="col-sm-1 control-label">供应商</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="supplierId" id="supplierId" th:value="${ostorage.supplierId}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">经手人</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="handleId" id="handleId" th:value="${ostorage.handleId}">
+                </div>
+                <label class="col-sm-1 control-label">经手人职位</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control">
+                </div>
+                <label class="col-sm-1 control-label">负责部门</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">备注</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="note" th:value="${ostorage.note}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">数量</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="quantity" id="quantity" th:value="${ostorage.quantity}">
+                </div>
+                <label class="col-sm-1 control-label">加工单价</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="puprice" id="puprice" th:value="${ostorage.puprice}">
+                </div>
+                <label class="col-sm-1 control-label">加工费用</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="pcost" th:value="${ostorage.pcost}" readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-1 control-label">材料单价</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="mprice" id="mprice" th:value="${ostorage.mprice}">
+                </div>
+                <label class="col-sm-1 control-label">材料费用</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="mcost"  th:value="${ostorage.mcost}" readOnly=readOnly>
+                </div>
+                <label class="col-sm-1 control-label">金额</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"name="amount" th:value="${ostorage.amount}" readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-9">
+                    <input type="submit" value="保存" class="btn btn-info"/>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript">
+    $("#info").submit(function() {
+        var ostorageId=$("#ostorageId").val();
+        var date=$("#date").val();
+        var productId=$("#productId").val();
+        var warehouseId=$("#warehouseId").val();
+        var supplierId=$("#supplierId").val();
+        var handleId=$("handleId").val();
+        var quantity=$("quantity").val();
+        var puprice=$("puprice").val();
+        var mprice=$("mprice").val();
+        if(ostorageId==""){
+            alert("编号不能为空");
+            return false;
+        }else if(date==""){
+            alert("日期不能为空");
+            return false;
+        }else if(productId==""){
+            alert("产品不能为空");
+            return false;
+        }else if(warehouseId==""){
+            alert("仓库不能为空");
+            return false;
+        }else if(supplierId==""){
+            alert("供应商不能为空");
+            return false;
+        }else if(handleId==""){
+            alert("经手人不能为空");
+            return false;
+        }else if(quantity==""){
+            alert("数量不能为空");
+            return false;
+        }else if(puprice==""){
+            alert("加工单价不能为空");
+            return false;
+        }else if(mprice==""){
+            alert("材料单价不能为空");
+            return false;
+        }else{
+            return true;
+        }
+    })
+</script>
+</html>

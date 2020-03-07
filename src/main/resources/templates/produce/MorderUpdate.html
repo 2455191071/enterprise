@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>修改制令单</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h4>修改制令单</h4>
+    <hr>
+    <form action="/Morder/findUpdate" method="post" id="info">
+        <div class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">原编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="id" th:value="${morder.morderId}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="morderId" id="morderId" th:value="${morder.morderId}">
+                </div>
+                <label class="col-sm-3 control-label">生产计划</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="planId" th:value="${morder.planId}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">MRP运算编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="mrp" th:value="${morder.mrp}"readOnly=readOnly>
+                </div>
+                <label class="col-sm-3 control-label">车间</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">制令日期</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" name="odate" id="odate" th:value="${morder.odate}">
+                </div>
+                <label class="col-sm-3 control-label">要求交期</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" name="delivery" id="delivery" th:value="${morder.delivery}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">预入仓库</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="warehouseId" id="warehouseId"th:value="${morder.warehouseId}">
+                </div>
+                <label class="col-sm-3 control-label">产品</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control"  name="productId" id="productId"th:value="${morder.productId}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">数量</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="quantity" id="quantity" th:value="${morder.quantity}">
+                </div>
+                <label class="col-sm-3 control-label">直接入库制单数</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="dss" th:value="${morder.dss}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">直接入库可制单数</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="cbmditw" th:value="${morder.cbmditw}"readOnly=readOnly>
+                </div>
+                <label class="col-sm-3 control-label">已入库数</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="warehouse" th:value="${morder.warehouse}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">质检制单数</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="qis" th:value="${morder.qis}"readOnly=readOnly>
+                </div>
+                <label class="col-sm-3 control-label">质检可制单数</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="qicmo" th:value="${morder.qicmo}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">备注</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="note" id="note" th:value="${morder.note}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-9">
+                    <input type="submit" value="保存" class="btn btn-info"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript">
+    $("#info").submit(function() {
+        var morderId=$("#morderId").val();
+        var odate=$("#odate").val();
+        var delivery=$("#delivery").val();
+        var warehouseId=$("#warehouseId").val();
+        var productId=$("#productId").val();
+        var quantity=$("#quantity").val();
+        if(morderId==""){
+            alert("编号不能为空");
+            return false;
+        }else if(odate==""){
+            alert("下单日期不能为空");
+            return false;
+        }else if(delivery==""){
+            alert("要求交期不能为空");
+            return false;
+        }else if(warehouseId==""){
+            alert("预入仓库不能为空");
+            return false;
+        }else if(productId==""){
+            alert("产品不能为空");
+            return false;
+        }else if(quantity==""){
+            alert("数量不能为空");
+            return false;
+        }else{
+            return true;
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>集中生产</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+        <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-4"><h2>集中生产</h2></div>
+        </div>
+
+        <div class="row">
+            <form action="/Productionlb/findSelect" method="post">
+                <div class="col-sm-1">来源单据:</div>
+                <div class="col-sm-3">
+                    <input type="text" placeholder="请输入来源单据"name="documentId"/>
+                </div>
+                <div class="col-sm-1">物料:</div>
+                <div class="col-sm-3">
+                    <input type="text" placeholder="请输入物料"name="materialsId"/>
+                </div>
+                <input type="submit" value="提交查询" class="btn btn-info"/>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12"></div>
+                <table class="table table-bordered table-hover ">
+                        <thead>
+                            <tr class="info">
+                                <th>No</th>
+                                <th>来源单据</th>
+                                <th>来源日期</th>
+                                <th>仓库</th>
+                                <th>物料</th>
+                                <th>需求量</th>
+                                <th>待制单量</th>
+                                <th>期限</th>
+                            </tr>
+                            <tr th:each="p:${pu.list}">
+                                <td th:text="${p.productionId}"></td>
+                                <td th:text="${p.documentId}"></td>
+                                <td th:text="${p.date}"></td>
+                                <td th:text="${p.warehouseId}"></td>
+                                <td th:text="${p.materialsId}"></td>
+                                <td th:text="${p.demand}"></td>
+                                <td th:text="${p.pending}"></td>
+                                <td th:text="${p.maturity}"></td>
+                            </tr>
+                        </thead>
+                </table>
+                        <div>
+                            <a th:href="@{/Productionlb/findSelect(index=1,sortId=${sortId})}">首页</a>
+
+                            <span th:switch="${pu.pageIndex}">
+                                <a th:case="1"
+                                   th:href="@{/Productionlb/findSelect(index=1,sortId=${sortId})}">上一页</a>
+                                <a th:case="*"
+                                   th:href="@{/Productionlb/findSelect(index=${pu.pageIndex-1},sortId=${sortId})}">上一页</a>
+                                </span>
+
+                            <span th:switch="${pu.pageIndex}">
+                                <a th:case="${pu.pageNumber}"
+                                   th:href="@{/Productionlb/findSelect(index=${pu.pageNumber},sortId=${sortId})}">下一页</a>
+                                <a th:case="*"
+                                   th:href="@{/Productionlb/findSelect(index=${pu.pageIndex+1},sortId=${sortId})}">下一页</a>
+                                </span>
+
+                            <a th:href="@{/Productionlb/findSelect(index=${pu.pageNumber},sortId=${sortId})}">尾页</a>
+                            &nbsp;&nbsp;
+                            第 <span th:text="${pu.pageIndex}"></span> 页 / 共
+                            <span	th:text="${pu.pageNumber}"></span> 页
+                        </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>
