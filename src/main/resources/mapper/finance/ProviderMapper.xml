@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.finance.ProviderMapper">
+    <insert id="add">
+        INSERT INTO provider_begin(`provider`,begindate,beginpayable,paydate,readypayment,alreadypayment,
+		begincost,present)
+		VALUES
+		(#{provider},#{begindate},#{beginpayable},#{paydate},#{readypayment},
+		#{alreadypayment},#{begincost},#{present})
+    </insert>
+
+    <update id="update">
+        update provider_begin
+        <set>
+            <if test="provider!=null and provider!=''">provider=#{provider},</if>
+            <if test="begindate!=null">begindate=#{begindate},</if>
+            <if test="beginpayable!=null and beginpayable!=''">beginpayable=#{beginpayable},</if>
+            <if test="paydate!=null">paydate=#{paydate},</if>
+            <if test="readypayment!=null and readypayment!=''">readypayment=#{readypayment},</if>
+            <if test="alreadypayment!=null and alreadypayment!=''">alreadypayment=#{alreadypayment},</if>
+            <if test="begincost!=null and begincost!=''">begincost=#{begincost},</if>
+            <if test="present!=null and present!=''">present=#{present}</if>
+        </set>
+        where providerId=#{providerId}
+    </update>
+
+    <delete id="delById">
+            delete from provider_begin where providerId = #{providerId}
+    </delete>
+
+
+
+    <select id="findTypeNameCount" resultType="java.lang.Integer">
+        SELECT count(1) FROM provider_begin
+        <if test="provider!=null and provider!=''">
+            where provider like CONCAT('%',#{provider},'%')
+        </if>
+    </select>
+
+    <select id="findById" resultType="com.csdj.enterprise.entity.finance.Provider">
+        select * from provider_begin where providerId = #{providerId}
+    </select>
+
+    <select id="findpInfoName" resultType="com.csdj.enterprise.entity.finance.Provider">
+            SELECT providerId,provider,begindate,beginpayable,paydate,readypayment,alreadypayment,begincost,present FROM
+            provider_begin
+            <if test="provider!=null">
+                where provider like CONCAT('%',#{provider},'%')
+            </if>
+            <if test=" begindate!=null">
+                and   begindate between #{begindate,jdbcType=VARCHAR} and #{paydate,jdbcType=VARCHAR}
+            </if>
+            <if test=" paydate!=null">
+                and   paydate between #{begindate,jdbcType=VARCHAR} and #{paydate,jdbcType=VARCHAR}
+            </if>
+            limit #{currPage},#{pageSize}
+    </select>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.finance.PersonApplyMapper">
+    <insert id="add">
+         INSERT INTO person_apply(`person`,typeId,applyMoney,theDateOf,applyDepartmentId,post)
+		VALUES
+		(#{person},#{typeId},#{applyMoney},#{theDateOf},#{applyDepartmentId},
+		#{post})
+    </insert>
+    <update id="update">
+        update person_apply
+        <set>
+            <if test="person!=null and person!=''">person=#{person},</if>
+            <if test="typeId!=null">typeId=#{typeId},</if>
+            <if test="applyMoney!=null and applyMoney!=''">applyMoney=#{applyMoney},</if>
+            <if test="theDateOf!=null">theDateOf=#{theDateOf},</if>
+            <if test="applyDepartmentId!=null and applyDepartmentId!=''">applyDepartmentId=#{applyDepartmentId},</if>
+            <if test="post!=null and post!=''">post=#{post}</if>
+        </set>
+        where applyId=#{applyId}
+    </update>
+    <delete id="delById">
+          delete from person_apply where applyId = #{applyId}
+    </delete>
+
+    <select id="findDepartment" resultType="com.csdj.enterprise.entity.finance.ApplyDepartment">
+        SELECT `applyDepartmentId`,`departmentName` FROM`applydepartment`
+    </select>
+
+    <select id="findCostType" resultType="com.csdj.enterprise.entity.finance.CostType">
+                select * from cost_type
+    </select>
+
+    <select id="findPost" resultType="com.csdj.enterprise.entity.finance.PersonApply">
+            select * from person_apply
+    </select>
+    <select id="findpInfoName" resultType="com.csdj.enterprise.entity.finance.PersonApply">
+        SELECT a.`applyId`,a.`person`,c.`costName`,a.`applyMoney`,a.`theDateOf`,b.`departmentName`,a.`post`,a.`typeId`,a.`applyDepartmentId` FROM
+        `person_apply` AS a,applydepartment AS b,cost_type AS c WHERE a.applyDepartmentId=b.`applyDepartmentId`
+        AND a.`typeId`=c.`typeId`
+        <if test="typeId>0">
+            and a.typeId=#{typeId}
+        </if>
+        <if test="applyDepartmentId>0">
+            and a.applyDepartmentId=#{applyDepartmentId}
+        </if>
+
+            limit #{currPage},#{pageSize}
+    </select>
+    <select id="findTypeNameCount" resultType="java.lang.Integer">
+        SELECT count(1) FROM person_apply
+    </select>
+    <select id="findById" resultType="com.csdj.enterprise.entity.finance.PersonApply">
+          select * from person_apply where applyId = #{applyId}
+    </select>
+
+</mapper>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>修改 仓库管理</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+</head>
+<!-- 修改页面 -->
+<body onload="findById();">
+<br/>
+<div class="form-horizontal" role="form">
+    <input type="hidden" id="warehouseId"name="warehouseId" value="2"/>
+    <div class="container">
+        <!--        日期时间-&#45;&#45;仓库-->
+        <div class="row">
+            <label class="col-sm-1">日期时间</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="date" name="date" placeholder="yyyy-MM-dd"/>
+            </div>
+
+            <label class="col-sm-1">仓库</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="warehouse" name="warehouse" >
+            </div>
+        </div>
+        <br/>
+        <!--        商品-&#45;&#45;数量-->
+        <div class="row">
+            <label class="col-sm-1">商品</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="commodity" name="commodity"placeholder=""/>
+            </div>
+
+            <label class="col-sm-1">数量</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="amount" name="amount" placeholder=""/>
+            </div>
+        </div>
+        <br/>
+        <!--        成本单价-&#45;&#45;成本-->
+        <div class="row">
+            <label class="col-sm-1">成本单价</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="costprice" name="costprice"placeholder="0"/>
+            </div>
+
+            <label class="col-sm-1">成本</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="costcount" name="costcount"placeholder="0"/>
+            </div>
+        </div>
+        <br/>
+        <!--        批号-&#45;&#45;备注-->
+        <div class="row">
+            <label class="col-sm-1">批号</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="batch" name="batch"placeholder="0"/>
+            </div>
+
+            <label class="col-sm-1">备注</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="remarks" name="remarks"placeholder="0"/>
+            </div>
+        </div>
+        <br/>
+        <!--        更新   &#45;&#45;&#45;&#45;取消-->
+        <div class="row">
+            <div class="col-sm-6" style="text-align: right;">
+                <button type="button" class="btn btn-success btn-sm" id="btnSave" name="btnSave">
+                    <span class="glyphicon glyphicon-ok" ></span> 保存
+                </button>
+                <button class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-log-out"></span> 取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.14.2/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../static/js/vue.min.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script type="text/javascript">
+    // 通过id获取值
+    function findById(){
+        var loc = location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+        if(id==""){
+            alert("未获取到ID值");
+        }else{
+            $.ajax({
+                type:"post",
+                url:"/repertory/findById",
+                data:{
+                    warehouseId:id
+                },
+                dataType:"json",
+                success:function(data){
+                    $("#warehouseId").val(id),
+                        $("#date").val(data.date),
+                        $("#warehouse").val(data.warehouse),
+                        $("#commodity").val(data.commodity),
+                        $("#amount").val(data.amount),
+                        $("#costprice").val(data.costprice),
+                        $("#costcount").val(data.costcount),
+                        $("#batch").val(data.batch),
+                        $("#remarks").val(data.remarks)
+                },
+                error:function(){
+                    alert("ajax错误！");
+                }
+            });
+        }
+    }
+    // 修改
+    $("document").ready(function(){
+        $("#btnSave").click(function(){
+            if(check()==true){
+                $.ajax({
+                    type:"post",
+                    url:"/repertory/update",
+                    data:{
+                        warehouseId: $("#warehouseId").val(),
+                        date: $("#date").val(),
+                        warehouse: $("#warehouse").val(),
+                        commodity: $("#commodity").val(),
+                        amount: $("#amount").val(),
+                        costprice: $("#costprice").val(),
+                        costcount: $("#costcount").val(),
+                        batch: $("#batch").val(),
+                        remarks: $("#remarks").val()
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data>0){
+                            alert("更新成功！");
+                            window.location.href = "/repertory/selectRepertory";
+                        }else{
+                            alert("更新失败！");
+                        }
+                    },
+                    error:function(){
+                        alert("ajax错误！");
+                    }
+                });
+            }
+        });
+    });
+    // 非空验证
+    function check(){
+        var warehouse=$("#warehouse").val();
+        if(warehouse==""){
+            alert("供应商不允许为空！");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>
