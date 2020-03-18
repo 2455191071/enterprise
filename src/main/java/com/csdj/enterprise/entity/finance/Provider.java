@@ -1,6 +1,7 @@
 package com.csdj.enterprise.entity.finance;
 
 
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  * 供应商期初管理实体类
  * @create: 2020-02-14 18:51
  **/
-
+@Data
 public class Provider {
     private int providerId;
     private String provider;

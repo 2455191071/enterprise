@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>修改生产计划 </title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h4>修改生产计划 </h4>
+    <hr>
+    <form action="/Plan/findUpdate" method="post" id="info">
+        <div class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">原编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="id" th:value="${plan.planId}"readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">编号</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="planId" id="planId" th:value="${plan.planId}">
+                </div>
+                <label class="col-sm-3 control-label">下单日期</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" name="odate" id="odate" th:value="${plan.odate}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">产品</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="productId" th:value="${plan.productId}"readOnly=readOnly>
+                </div>
+                <label class="col-sm-3 control-label">BOM</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="bomId" id="bomId"th:value="${plan.bomId}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">数量</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="quantity" id="quantity" th:value="${plan.quantity}">
+                </div>
+                <label class="col-sm-3 control-label">需求核销数</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="demand" th:value="${plan.demand}" readOnly=readOnly>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">备料期限</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control" name="term" id="term"th:value="${plan.term}">
+                </div>
+                <label class="col-sm-3 control-label">要求交期</label>
+                <div class="col-sm-2">
+                    <input type="date" class="form-control"  name="delivery" id="delivery"th:value="${plan.delivery}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">计划人</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" name="plannerId" id="plannerId" th:value="${plan.plannerId}">
+                </div>
+                <label class="col-sm-3 control-label">计划职位</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">备注</label>
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" style="width:300px; height:100px;" name="note"th:value="${plan.note}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-9">
+                    <input type="submit" value="保存" class="btn btn-info"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery-1.12.4.js}"></script>
+<script type="text/javascript">
+    $("#info").submit(function() {
+        var planId=$("#planId").val();
+        var odate=$("#odate").val();
+        var bomId=$("#bomId").val();
+        var quantity=$("#quantity").val();
+        var term=$("#term").val();
+        var delivery=$("#delivery").val();
+        var plannerId=$("#plannerId").val();
+        if(planId==""){
+            alert("编号不能为空");
+            return false;
+        }else if(odate==""){
+            alert("下单日期不能为空");
+            return false;
+        }else if(bomId==""){
+            alert("BOM不能为空");
+            return false;
+        }else if(quantity==""){
+            alert("数量不能为空");
+            return false;
+        }else if(term==""){
+            alert("备料期限不能为空");
+            return false;
+        }else if(delivery==""){
+            alert("要求交期不能为空");
+            return false;
+        }else if(plannerId==""){
+            alert("计划人不能为空");
+            return false;
+        }else{
+            return true;
+        }
+    })
+</script>
+</html>

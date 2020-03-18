@@ -19,4 +19,6 @@ public class PersonApply {
     private Date theDateOf;
     private int applyDepartmentId;
     private int post;
+    private String departmentName;
+    private String costName;
 }

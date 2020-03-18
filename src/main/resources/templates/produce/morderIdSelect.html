@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>查看制令单</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h4>查看制令单 </h4>
+    <hr>
+    <a th:href="@{/Morder/findUpdate(morderId=${morder.morderId})}" class="btn btn-info">修改</a>
+    <a th:href="@{/Morder/morderIdDelete(morderId=${morder.morderId})}" class="btn btn-info">删除</a>
+    <table class="table table-bordered">
+        <tr>
+            <td style="width: 100px">编号</td>
+            <td th:text="${morder.morderId}"></td>
+            <td style="width: 100px">产品</td>
+            <td th:text="${morder.productId}"></td>
+            <td style="width: 100px">MRP运算编号</td>
+            <td th:text="${morder.mrp}"></td>
+        </tr>
+        <tr>
+            <td>制令日期</td>
+            <td th:text="${morder.odate}"></td>
+            <td>要求交期</td>
+            <td th:text="${morder.delivery}"></td>
+            <td>生产计划</td>
+            <td th:text="${morder.planId}"></td>
+        </tr>
+        <tr>
+            <td>预入仓库</td>
+            <td th:text="${morder.warehouseId}"></td>
+            <td>上级</td>
+            <td th:text="${morder.superior}"></td>
+            <td>数量</td>
+            <td th:text="${morder.quantity}"></td>
+        </tr>
+        <tr>
+            <td>质检制单数</td>
+            <td th:text="${morder.qis}"></td>
+            <td>质检可制单数</td>
+            <td th:text="${morder.qicmo}"></td>
+            <td>直接入库制单数</td>
+            <td th:text="${morder.dss}"></td>
+        </tr>
+        <tr>
+            <td>直接入库可制单数</td>
+            <td th:text="${morder.cbmditw}"></td>
+            <td>已入库数</td>
+            <td th:text="${morder.warehouse}"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>备注</td>
+            <td th:text="${morder.note}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

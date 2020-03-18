@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.produce.MorderMapper">
+    <resultMap id="MorderMap" type="Morder">
+        <id property="no" column="no"></id>
+        <result property="morderId" column="morderId"></result>
+        <result property="mrp" column="mrp"></result>
+        <result property="odate" column="odate"></result>
+        <result property="delivery" column="delivery"></result>
+        <result property="superior" column="superior"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="qis" column="qis"></result>
+        <result property="qicmo" column="qicmo"></result>
+        <result property="dss" column="dss"></result>
+        <result property="cbmditw" column="cbmditw"></result>
+        <result property="warehouse" column="warehouse"></result>
+        <result property="note" column="note"></result>
+        <association property="productId" column="productId"/>
+        <association property="planId" column="planId"/>
+        <association property="warehouseId" column="warehouseId"/>
+    </resultMap>
+    <select id="findSelect" resultMap="MorderMap">
+        SELECT * FROM morder
+        <where>
+            <if test="mrp!=null">
+                mrp=#{mrp}
+            </if>
+            <if test="mrp!=null and productId!=null">
+                and
+            </if>
+            <if test="productId!=null">
+                productId=#{productId}
+            </if>
+        </where>
+        limit #{begin},#{end}
+    </select>
+    <select id="total" resultType="int">
+        SELECT COUNT(1) FROM morder
+        <where>
+            <if test="mrp!=null">
+                mrp=#{mrp}
+            </if>
+            <if test="mrp!=null and productId!=null">
+                and
+            </if>
+            <if test="productId!=null">
+                productId=#{productId}
+            </if>
+        </where>
+    </select>
+    <select id="morderIdSelect" resultType="Morder">
+        SELECT * FROM morder where morderId=#{morderId}
+    </select>
+    <delete id="morderIdDelete">
+        DELETE FROM morder WHERE morderId=#{morderId}
+    </delete>
+    <update id="findUpdate">
+        UPDATE morder SET  morderId=#{morderId},productId=#{productId},mrp=#{mrp},odate=#{odate},delivery=#{delivery},planId=#{planId},warehouseId=#{warehouseId},superior=#{superior},quantity=#{quantity},qis=#{qis},qicmo=#{qicmo},dss=#{dss},cbmditw=#{cbmditw},warehouse=#{warehouse},note=#{note} where morderId = #{id}
+    </update>
+</mapper>

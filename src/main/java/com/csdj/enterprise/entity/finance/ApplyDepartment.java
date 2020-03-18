@@ -10,6 +10,6 @@ import lombok.Data;
  **/
 @Data
 public class ApplyDepartment {
-    private int DepartmentId;
+    private int applyDepartmentId;
     private String  departmentName;
 }

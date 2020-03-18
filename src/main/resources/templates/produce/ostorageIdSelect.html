@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>查看外协入库</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h4>查看外协入库</h4>
+    <hr>
+    <a th:href="@{/Ostorage/findUpdate(ostorageId=${ostorage.ostorageId})}" class="btn btn-info">修改</a>
+    <a th:href="@{/Ostorage/ostorageIdDelete(ostorageId=${ostorage.ostorageId})}" class="btn btn-info">删除</a>
+    <table class="table table-bordered">
+        <tr>
+            <td style="width: 100px">编号</td>
+            <td th:text="${ostorage.ostorageId}"></td>
+            <td style="width: 100px">日期</td>
+            <td th:text="${ostorage.date}"></td>
+            <td style="width: 100px">MRP运算编号</td>
+            <td th:text="${ostorage.mrp}"></td>
+        </tr>
+        <tr>
+            <td>外协订单</td>
+            <td th:text="${ostorage.outsourcingId}"></td>
+            <td>产品</td>
+            <td th:text="${ostorage.productId}"></td>
+            <td>批号</td>
+            <td th:text="${ostorage.number}"></td>
+        </tr>
+        <tr>
+            <td>仓库</td>
+            <td th:text="${ostorage.warehouseId}"></td>
+            <td>供应商</td>
+            <td th:text="${ostorage.supplierId}"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>经手人</td>
+            <td th:text="${ostorage.handleId}"></td>
+            <td>经手人职位</td>
+            <td th:text="${ostorage.handleId}"></td>
+            <td>负责部门</td>
+            <td th:text="${ostorage.handleId}"></td>
+        </tr>
+        <tr>
+            <td>备注</td>
+            <td th:text="${ostorage.note}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>数量</td>
+            <td th:text="${ostorage.quantity}"></td>
+            <td>加工单价</td>
+            <td th:text="${ostorage.puprice}"></td>
+            <td>加工费用</td>
+            <td th:text="${ostorage.pcost}"></td>
+        </tr>
+        <tr>
+            <td>材料单价</td>
+            <td th:text="${ostorage.mprice}"></td>
+            <td>材料费用</td>
+            <td th:text="${ostorage.mcost}"></td>
+            <td>金额</td>
+            <td th:text="${ostorage.amount}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

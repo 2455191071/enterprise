@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.produce.PlanMapper">
+    <resultMap id="PlanMap" type="Plan">
+        <id property="no" column="no"></id>
+        <result property="planId" column="planId"></result>
+        <result property="odate" column="odate"></result>
+        <result property="delivery" column="delivery"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="demand" column="demand"></result>
+        <result property="term" column="term"></result>
+        <result property="note" column="note"></result>
+        <association property="productId" column="productId"/>
+        <association property="bomId" column="bomId"/>
+        <association property="plannerId" column="plannerId"/>
+    </resultMap>
+    <select id="findSelect" resultMap="PlanMap">
+        SELECT * FROM plan
+        <if test="productId!=null">where productId=#{productId} </if>
+        limit #{begin},#{end}
+    </select>
+    <select id="total" resultType="int">
+        SELECT COUNT(1) FROM plan
+        <if test="productId!=null">where productId=#{productId} </if>
+    </select>
+    <insert id="findPostInsert" parameterType="Plan">
+        INSERT INTO plan VALUE(null,#{planId},#{productId},#{odate},#{delivery},#{bomId},#{quantity},#{demand},#{term},#{plannerId},#{note})
+    </insert>
+    <select id="planIdSelect" resultType="Plan">
+        SELECT * FROM plan where planId=#{planId}
+    </select>
+    <delete id="planIdDelete">
+        DELETE FROM plan WHERE planId=#{planId}
+    </delete>
+    <update id="findUpdate">
+        UPDATE plan SET  planId=#{planId},productId=#{productId},odate=#{odate},delivery=#{delivery},bomId=#{bomId},quantity=#{quantity},demand=#{demand},term=#{term},plannerId=#{plannerId},note=#{note} where planId = #{id}
+    </update>
+</mapper>

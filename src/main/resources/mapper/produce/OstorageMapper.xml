@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.produce.OstorageMapper">
+    <resultMap id="OstorageMap" type="Ostorage">
+        <id property="no" column="no"></id>
+        <result property="ostorageId" column="ostorageId"></result>
+        <result property="date" column="date"></result>
+        <result property="mrp" column="mrp"></result>
+        <result property="number" column="number"></result>
+        <result property="note" column="note"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="puprice" column="puprice"></result>
+        <result property="pcost" column="pcost"></result>
+        <result property="mprice" column="mprice"></result>
+        <result property="mcost" column="mcost"></result>
+        <result property="amount" column="amount"></result>
+        <association property="outsourcingId" column="outsourcingId"/>
+        <association property="productId" column="productId"/>
+        <association property="warehouseId" column="warehouseId"/>
+        <association property="supplierId" column="supplierId"/>
+        <association property="handleId" column="handleId"/>
+    </resultMap>
+    <select id="findSelect" resultMap="OstorageMap">
+        SELECT * FROM ostorage
+        <where>
+            <if test="ostorageId!=null">
+                ostorageId=#{ostorageId}
+            </if>
+            <if test="ostorageId!=null and productId!=null">
+                and
+            </if>
+            <if test="productId!=null">
+                productId=#{productId}
+            </if>
+            <if test="productId!=null and warehouseId!=null || ostorageId!=null and warehouseId!=null">
+                and
+            </if>
+            <if test="warehouseId!=null">
+                warehouseId=#{warehouseId}
+            </if>
+        </where>
+        limit #{begin},#{end}
+    </select>
+    <select id="total" resultType="int">
+        SELECT COUNT(1) FROM ostorage
+        <where>
+            <if test="ostorageId!=null">
+                ostorageId=#{ostorageId}
+            </if>
+            <if test="ostorageId!=null and productId!=null">
+                and
+            </if>
+            <if test="productId!=null">
+                productId=#{productId}
+            </if>
+            <if test="productId!=null and warehouseId!=null || ostorageId!=null and warehouseId!=null">
+                and
+            </if>
+            <if test="warehouseId!=null">
+                warehouseId=#{warehouseId}
+            </if>
+        </where>
+    </select>
+    <select id="ostorageIdSelect" resultType="Ostorage">
+        SELECT * FROM ostorage where ostorageId=#{ostorageId}
+    </select>
+    <delete id="ostorageIdDelete">
+        DELETE FROM ostorage WHERE ostorageId=#{ostorageId}
+    </delete>
+    <update id="findUpdate">
+        UPDATE ostorage SET  ostorageId=#{ostorageId},date=#{date},productId=#{productId},warehouseId=#{warehouseId},supplierId=#{supplierId},handleId=#{handleId},note=#{note},quantity=#{quantity},puprice=#{puprice},mprice=#{mprice} where ostorageId = #{id}
+    </update>
+</mapper>

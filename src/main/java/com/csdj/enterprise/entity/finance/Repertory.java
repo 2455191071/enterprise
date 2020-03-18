@@ -2,6 +2,8 @@ package com.csdj.enterprise.entity.finance;
 
 
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Date;
  * @author: Yin jie
  * @create: 2020-02-17 18:59
  **/
-
+@Data
 public class Repertory {
     private int warehouseId;
     private Date date;

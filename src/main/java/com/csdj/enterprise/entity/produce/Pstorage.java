@@ -4,7 +4,8 @@ package com.csdj.enterprise.entity.produce;
  * 实体类：生产入库表
  */
 public class Pstorage {
-    private String pstorageId;//编号,主键
+    private int no;//序号
+    private String pstorageId;//编号
     private String date;//日期
     private String morderId;//制令单,制令单外键
     private String workshop;//车间
@@ -16,6 +17,14 @@ public class Pstorage {
     private String manufacturingdate;//制单时间
     private int modifyId;//最近修改人,用户登录外键
     private String modifydate;//最近更新时间
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
+    }
 
     public String getPstorageId() {
         return pstorageId;

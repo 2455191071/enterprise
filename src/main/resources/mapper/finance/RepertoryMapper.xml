@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.finance.RepertoryMapper">
+    <insert id="add">
+         INSERT INTO warehouse_begin(`date`,warehouse,commodity,amount,costprice,costcount,
+		batch,remarks)
+		VALUES
+		(#{date},#{warehouse},#{commodity},#{amount},#{costprice},
+		#{costcount},#{batch},#{remarks})
+    </insert>
+    <update id="update">
+        update warehouse_begin
+        <set>
+            <if test="date!=null">date=#{date},</if>
+            <if test="warehouse!=null and warehouse!=''">warehouse=#{warehouse},</if>
+            <if test="commodity!=null and commodity!=''">commodity=#{commodity},</if>
+            <if test="amount!=null and amount!=''">amount=#{amount},</if>
+            <if test="costprice!=null and costprice!=''">costprice=#{costprice},</if>
+            <if test="costcount!=null and costcount!=''">costcount=#{costcount},</if>
+            <if test="batch!=null and batch!=''">batch=#{batch},</if>
+            <if test="remarks!=null and remarks!=''">remarks=#{remarks}</if>
+        </set>
+        where warehouseId=#{warehouseId}
+    </update>
+    <delete id="delById">
+                    delete from warehouse_begin where warehouseId = #{warehouseId}
+    </delete>
+
+    <select id="findByAll" resultType="com.csdj.enterprise.entity.finance.Repertory">
+        SELECT `warehouseId`,`date`,`warehouse`,`commodity`,`amount`,`costprice`,`costcount`,`batch`,`remarks` FROM `warehouse_begin`
+        <if test="warehouse!=null">
+            where warehouse like CONCAT('%',#{warehouse},'%')
+        </if>
+        <if test=" date!=null">
+            and   `date` between #{begindate,jdbcType=VARCHAR} and #{paydate,jdbcType=VARCHAR}
+        </if>
+        <if test=" date!=null">
+            and   `date` between #{begindate,jdbcType=VARCHAR} and #{paydate,jdbcType=VARCHAR}
+        </if>
+        <if test="commodity!=null">
+            and commodity like CONCAT('%',#{commodity},'%')
+        </if>
+        <if test="remarks!=null">
+            and remarks like CONCAT('%',#{remarks},'%')
+        </if>
+        limit #{currPage},#{pageSize}
+    </select>
+    <select id="findTypeNameCount" resultType="java.lang.Integer">
+        SELECT count(1) FROM warehouse_begin
+        <if test="warehouse!=null and warehouse!=''">
+            where warehouse like CONCAT('%',#{warehouse},'%')
+        </if>
+    </select>
+    <select id="findById" resultType="com.csdj.enterprise.entity.finance.Repertory">
+                select * from warehouse_begin where warehouseId = #{warehouseId}
+    </select>
+</mapper>

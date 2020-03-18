@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>添加 供应商期初管理</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+</head>
+<!--添加页面-->
+<body>
+<br/>
+<div class="form-horizontal" role="form">
+    <div class="container">
+        <!--        供应商-&#45;&#45;期初日期-->
+        <div class="row">
+            <label class="col-sm-1">供应商</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="provider" name="provider" placeholder=""/>
+            </div>
+
+            <label class="col-sm-1">期初日期</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="begindate" name="begindate" placeholder="yyyy-MM-dd">
+            </div>
+        </div>
+        <br/>
+        <!--        期初应付款-&#45;&#45;应付期限-->
+        <div class="row">
+            <label class="col-sm-1">期初应付</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="beginpayable" name="beginpayable"placeholder="0"/>
+            </div>
+
+            <label class="col-sm-1">应付期限</label>
+            <div class="col-sm-4">
+                <input type="date" class="form-control" id="paydate" name="paydate" placeholder="yyyy-MM-dd"/>
+            </div>
+        </div>
+        <br/>
+        <!--        期初预付款-&#45;&#45;期初已付款-->
+        <div class="row">
+            <label class="col-sm-1">期初预付</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="readypayment" name="readypayment"placeholder="0"/>
+            </div>
+
+            <label class="col-sm-1">期初已付</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="alreadypayment" name="alreadypayment"placeholder="0"/>
+            </div>
+        </div>
+        <br/>
+        <!--        期初费用-&#45;&#45;期初已赠送金额-->
+        <div class="row">
+            <label class="col-sm-1">期初费用</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="begincost" name="begincost"placeholder="0"/>
+            </div>
+
+            <label class="col-sm-1">赠送金额</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="present" name="present"placeholder="0"/>
+            </div>
+        </div>
+        <br/>
+        <!--        更新   &#45;&#45;&#45;&#45;取消-->
+        <div class="row">
+                <div class="col-sm-6" style="text-align: right;">
+                    <button type="button" class="btn btn-success btn-sm" id="btnSave" name="btnSave">
+                        <span class="glyphicon glyphicon-ok" ></span> 保存
+                    </button>
+                    <button class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-log-out"></span> 取消
+                    </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.14.2/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../static/js/vue.min.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script>
+    // 添加
+    $("document").ready(function(){
+        $("#btnSave").click(function(){
+            if(check()==true){
+                $.ajax({
+                    type:"post",
+                    url:"/kirb/add",
+                    data:{
+                        provider: $("#provider").val(),
+                        begindate: $("#begindate").val(),
+                        beginpayable: $("#beginpayable").val(),
+                        paydate: $("#paydate").val(),
+                        readypayment: $("#readypayment").val(),
+                        alreadypayment: $("#alreadypayment").val(),
+                        begincost: $("#begincost").val(),
+                        present: $("#present").val()
+                    },
+                    dataType:"json",
+                    success:function(data){
+                        if(data>0){
+                            alert("添加成功！");
+                            window.location.href = "/kirb/selectProvider";
+                        }else{
+                            alert("添加失败！");
+                        }
+                    },
+                    error:function(){
+                        alert("ajax错误！");
+                    }
+                });
+            }
+        });
+    });
+    // 非空验证
+    function check(){
+        var provider=$("#provider").val();
+        if(provider==""){
+            alert("供应商不允许为空！");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>

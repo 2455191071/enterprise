@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.SequenceDao">
+    <resultMap type="Sequence" id="detailMap">
+        <id column="sequenceId" property="sequenceId"/>
+        <result column="commodityId" property="commodityId" />
+        <result column="sequenceCdate" property="sequenceCdate" />
+        <result column="sequenceJdate" property="sequenceJdate" />
+        <result column="sequence" property="sequence" />
+        <result column="sequenceBei" property="sequenceBei" />
+
+        <!-- 仓库编号，外键，对象关联仓库表 -->
+        <association property="wareId" column="warehouseId"
+                     select="com.csdj.enterprise.dao.storage.DepotLnDao.findById">
+        </association>
+        <!-- 仓库编号，外键，对象关联仓库表 -->
+        <association property="menId" column="memberId"
+                     select="com.csdj.enterprise.dao.storage.MemberDao.findById">
+        </association>
+    </resultMap>
+
+    <select id="findById" parameterType="String"  resultMap="detailMap">
+        select * from sequence where sequenceId = #{sequenceId}
+    </select>
+    <select id="findPage" parameterType="map" resultMap="detailMap">
+        select * from sequence
+        <where>
+            <if test="commodityId!=null and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="sequenceId!=null  and sequenceId!=''">
+                and sequenceId LIKE CONCAT('%',#{sequenceId},'%')
+            </if>
+            <if test="memberId!=null  and memberId!=''">
+                and  memberId LIKE CONCAT('%',#{memberId},'%')
+            </if>
+            <if test="sequenceBei!=null  and sequenceBei!=''">
+                and  sequenceBei LIKE CONCAT('%',#{sequenceBei},'%')
+            </if>
+
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from sequence
+        <where>
+            <if test="commodityId!=null and commodityId!=''">
+                commodityId LIKE CONCAT('%',#{commodityId},'%')
+            </if>
+            <if test="sequenceId!=null  and sequenceId!=''">
+                and sequenceId LIKE CONCAT('%',#{sequenceId},'%')
+            </if>
+            <if test="memberId!=null  and memberId!=''">
+                and  memberId LIKE CONCAT('%',#{memberId},'%')
+            </if>
+            <if test="sequenceBei!=null  and sequenceBei!=''">
+                and  sequenceBei LIKE CONCAT('%',#{sequenceBei},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="Sequence">
+            INSERT INTO sequence
+            VALUES(#{sequenceId},#{commodityId},#{sequenceCdate},#{sequenceJdate},#{warehouseId},#{sequence},#{memberId},#{sequenceBei})
+    </insert>
+
+
+</mapper>

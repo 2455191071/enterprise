@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csdj.enterprise.dao.storage.ClerkLnveDao">
+
+    <select id="findPage" parameterType="map" resultType="Clerk">
+        select * from clerk
+        <where>
+            <if test="clerkName!=null and clerkName!=''">
+                clerkName LIKE CONCAT('%',#{clerkName},'%')
+            </if>
+            <if test="offPhone!=null  and offPhone!=''">
+                and offPhone LIKE CONCAT('%',#{offPhone},'%')
+            </if>
+        </where>
+        limit #{off},#{size}
+    </select>
+
+    <select id="Count" resultType="int" parameterType="map">
+        select count(*) from clerk
+        <where>
+            <if test="clerkName!=null and clerkName!=''">
+                clerkName LIKE CONCAT('%',#{clerkName},'%')
+            </if>
+            <if test="offPhone!=null  and offPhone!=''">
+                and offPhone LIKE CONCAT('%',#{offPhone},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

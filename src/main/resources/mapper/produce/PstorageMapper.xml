@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.produce.PstorageMapper">
+    <resultMap id="PstorageMap" type="Pstorage">
+        <id property="no" column="no"></id>
+        <result property="pstorageId" column="pstorageId"></result>
+        <result property="date" column="date"></result>
+        <result property="workshop" column="workshop"></result>
+        <result property="note" column="note"></result>
+        <result property="manufacturingdate" column="manufacturingdate"></result>
+        <result property="modifydate" column="modifydate"></result>
+        <association property="morderId" column="morderId"/>
+        <association property="warehouseId" column="warehouseId"/>
+        <association property="planId" column="planId"/>
+        <association property="handleId" column="handleId"/>
+        <association property="manufacturingId" column="manufacturingId"/>
+        <association property="modifyId" column="modifyId"/>
+    </resultMap>
+    <select id="findSelect" resultMap="PstorageMap">
+        SELECT * FROM pstorage
+        <where>
+            <if test="warehouseId!=null">
+                warehouseId=#{warehouseId}
+            </if>
+            <if test="warehouseId!=null and planId!=null">
+                and
+            </if>
+            <if test="planId!=null">
+                planId=#{planId}
+            </if>
+        </where>
+        limit #{begin},#{end}
+    </select>
+    <select id="total" resultType="int">
+        SELECT COUNT(1) FROM pstorage
+        <where>
+            <if test="warehouseId!=null">
+                warehouseId=#{warehouseId}
+            </if>
+            <if test="warehouseId!=null and planId!=null">
+                and
+            </if>
+            <if test="planId!=null">
+                planId=#{planId}
+            </if>
+        </where>
+    </select>
+    <select id="pstorageIdSelect" resultType="Pstorage">
+        SELECT * FROM pstorage where pstorageId=#{pstorageId}
+    </select>
+    <delete id="pstorageIdDelete">
+        DELETE FROM pstorage WHERE pstorageId=#{pstorageId}
+    </delete>
+    <update id="findUpdate">
+        UPDATE pstorage SET  pstorageId=#{pstorageId},date=#{date},warehouseId=#{warehouseId},handleId=#{handleId},note=#{note} where pstorageId = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>查看物料清单</title>
+    <script src="../static/bots335/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-1.12.4.js" type="text/javascript"></script>
+    <link href="../static/bots335/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <h4>查看物料清单</h4>
+    <hr>
+    <a th:href="@{/Bomlb/findUpdate(bomId=${bomlb.bomId})}" class="btn btn-info">修改</a>
+    <a th:href="@{/Bomlb/bomIdDelete(bomId=${bomlb.bomId})}" class="btn btn-info">删除</a>
+    <table class="table table-bordered">
+        <tr>
+            <td style="width: 100px">编号</td>
+            <td th:text="${bomlb.bomId}"></td>
+            <td style="width: 100px">默认</td>
+            <td th:text="${bomlb.defaults}"></td>
+            <td style="width: 100px">物料</td>
+            <td th:text="${bomlb.materialsId}"></td>
+        </tr>
+        <tr>
+            <td>仓库</td>
+            <td th:text="${bomlb.warehouseId}"></td>
+            <td>创建人</td>
+            <td th:text="${bomlb.founderId}"></td>
+            <td>创建时间</td>
+            <td th:text="${bomlb.founderdate}"></td>
+        </tr>
+        <tr>
+            <td>备注</td>
+            <td th:text="${bomlb.note}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

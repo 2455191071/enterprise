@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>查询报销部门表</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+</head>
+<!--查询页面-->
+<body onload="loadCostPage();findDepartment();">
+<div class="container">
+    <!--按供应商名称和期初日期查询-->
+    <div class="row">
+        <br>        <!--查询条件-->
+        <div class="panel-body" style="padding-bottom:0px;width:104%;margin-left:-15px">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        日期：
+                        <input type="date" id="begindate"
+                               style="height:35px;width:200px;margin-left:5px;margin-top:-32px;border-radius: 6px;border: 1px #cccccc solid; outline: none"
+                        >
+                        —
+                        <input type="date" id="paydate"
+                               style="height:35px;width:200px;margin-left:8px;margin-top:-34px;border-radius: 6px;border: 1px #cccccc solid; outline: none"
+                        >
+                        &nbsp; &nbsp;
+                        部门:
+                        <select class="form-control" name="typeId" id="typeId"
+                                style="width: 200px;margin-left: 860px;margin-top:-35px">
+                        </select>
+                        <div style="margin-left: 780px;margin-top: -30px">
+                            费用类型:
+                        </div>
+                        <select class="form-control" name="applyDepartmentId" id="applyDepartmentId"
+                                style="width: 200px;margin-left: 550px;margin-top:-35px">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!--查询刷新添加-->
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right">
+            <button type="button" data-icon="search" style="width:70px;height:35px;margin-left:20px;margin-top:-3px"
+                    id="btnQuery"
+                    onclick="searc()" class="btn btn-info">查询
+            </button>
+            <button type="button" style="width:70px;height:35px;margin-left:20px;margin-top:-3px" id="btn_add"
+                    class="btn btn-info" onclick="add()">添加
+            </button>
+            <button type="button" style="width:70px;height:35px;margin-left:20px;margin-top:-3px" id="btn_refresh"
+                    class="btn btn-info" onclick="reload()">刷新
+            </button>
+        </div>
+    </div>
+
+    <!--表格-->
+    <div class="row">
+        <div class="col-sm-12" id="vue-menu3">
+            <table id="table" data-toggle="table" class="table table-striped"/>
+        </div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.14.2/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../static/js/vue.min.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script src="../static/js/bootstrap-table-export.js"></script>
+<script src="../static/js/tableExport.js"></script>
+<script src="../static/js/jquery.base64.js"></script>
+<script>
+    function searc() {
+        $('#table').bootstrapTable('refresh');
+    }
+
+    function queryParams(params) {
+        var temp = {
+            typeId: $("#typeId").val(),
+            applyDepartmentId: $("#applyDepartmentId").val(),
+        };
+        return temp;
+    }
+
+    //查询
+    $('#table').bootstrapTable({
+        url: '/apply/findAllByName',
+        method: 'get',
+        dataType: "json",
+        dataField: "data",
+        classes: 'table',//边框
+        undefinedText: '',//当数据为 undefined 时显示的字符
+        pagination: true,//启动分页
+        paginationLoop: true,
+        pageNumber: 1,
+        pageSize: 5,
+        pageList: [1, 5, 10, 20],
+        striped: true,                      //是否显示行间隔色
+        showColumns: true,  //显示下拉框勾选要显示的列
+        showRefresh: true,  //显示刷新按钮
+        showToggle: true,//显示一行是否改成竖着
+        showPaginationSwitch: true,//是否显示 下面的分页框
+        search: false, //显示搜索框
+        detailView: true,
+        queryParams: queryParams,
+        queryParamsType: "limit",
+        toolbal: '#toolbar',
+        id: "testTable",
+        data: {},
+        detailFormatter: function (index, row) {
+            return JSON.stringify(row);
+        },
+        columns: [{
+            field: 'applyId',
+            title: '№',
+            formatter: function (value, row, index) {
+                return index + 1;
+            }
+        }, {
+            field: 'person',
+            title: '人员',
+            align: 'center'
+        }, {
+            field: 'costName',
+            title: '费用类型Id',
+            align: 'center',
+        }, {
+            field: 'applyMoney',
+            title: '报销费用'
+        }, {
+            field: 'theDateOf',
+            title: '应付期限',
+            //获取日期列的值进行转换
+            formatter: function (value, row, index) {
+                return changeDateFormat(value)
+            }
+        }, {
+            field: 'departmentName',
+            title: '报销部门ID'
+        }
+            , {
+                field: 'post',
+                title: '过账'
+            },
+            {
+                title: '操作',
+                width: 180,
+                align: 'center',
+                valign: 'middle',
+                formatter: actionFormatter
+            },], onLoadSuccess: function () {
+        },
+        onLoadError: function () {
+            showTips("数据加载失败！");
+        }, showExport: true,                     //是否显示导出
+        exportDataType: "basic",
+    });
+
+    //转换日期格式(时间戳转换为datetime格式)
+    function changeDateFormat(cellval) {
+        var dateVal = cellval + "";
+        if (cellval != null) {
+            var date = new Date(parseInt(dateVal.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+            return date.getFullYear() + "-" + month + "-" + currentDate + " ";
+        }
+    }
+
+    //操作栏的格式化
+    function actionFormatter(value, row, index) {
+        var id = row.applyId;
+        var result = "";
+        result += "<a href='javascript:' class='btn btn-info btn-xs'onclick=\"update('" + id + "')\"><span class='glyphicon glyphicon-pencil'></span> 修改</a>";
+        result += "<button href='javascript:' class='btn btn-danger btn-xs' onclick=\"DeleteByIds('" + id + "')\"><span class='glyphicon glyphicon-pencil'></span> 删除</button>";
+        return result;
+    }
+
+    // 删除
+    function DeleteByIds(id) {
+        $.ajax({
+            type: "post",
+            url: "/apply/del",
+            data: {
+                applyId: id
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    alert("删除成功！");
+                    window.location.href = "/apply/selectPersonApply";
+                } else {
+                    alert("删除失败！");
+                }
+            },
+            error: function () {
+                alert("ajax错误！");
+            }
+        });
+
+    }
+
+    //添加
+    function add() {
+        window.location.href = "/apply/addPersonApply";
+    }
+
+    // 修改
+    function update(id) { //修改
+        window.location.href = "/apply/upPersonApply?id=" + id;
+    }
+
+    //刷新
+    function reload() {
+        window.location.reload();
+    }
+
+    function findDepartment() {//加载下拉列表
+        $.ajax({
+            type: "post",
+            url: "/apply/findDepartment",
+            data: {},
+            dataType: "json",
+            success: function (data) { //如果data是字符串   需用eval函数转换成对象
+                var h = "<option value=0>请选择...</option>";
+                $.each(data, function (a, b) {
+                    h = h + "<option value=" + b.applyDepartmentId + ">" + b.departmentName + "</option>";
+                });
+                $("#applyDepartmentId").html(h);
+            },
+            error: function () {
+                alert("aja,x错误！");
+            }
+        });
+    }
+
+    function loadCostPage() {//加载下拉列表
+        $.ajax({
+            type: "post",
+            url: "/apply/findCostType",
+            data: {},
+            dataType: "json",
+            success: function (data) { //如果data是字符串   需用eval函数转换成对象
+                var h = "<option value=0>请选择...</option>";
+                $.each(data, function (a, b) {
+                    h = h + "<option value=" + b.typeId + ">" + b.costName + "</option>";
+                });
+                $("#typeId").html(h);
+            },
+            error: function () {
+                alert("aja,x错误！");
+            }
+        });
+    }
+</script>
+</html>
