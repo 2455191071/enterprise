@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.finance.CustomerAdvanceDao">
+
+	<select id="selectAll" parameterType="map" resultType="CustomerAdvance">
+		select * from customeradvance
+		<where>
+			<if test="receiptId != '' and receiptId != null">
+				and receiptId=#{receiptId}
+			</if>
+			<if test="client != '' and client != null">
+				and client=#{client}
+			</if>
+			<if test="salesman != '' and salesman != null">
+				and salesman=#{salesman}
+			</if>
+		</where>
+		limit  #{currentage},#{pageSize}
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM customeradvance
+	</select>
+
+	<select id="selectClerkName" resultType="Clerk">
+		SELECT * FROM clerk
+	</select>
+
+	<insert id="add" parameterType="CustomerAdvance">
+        insert into customeradvance value(#{receiptId},#{paymentTerm},#{collectionDay},#{client},#{money},
+        #{deduction},#{salesman},#{businessPosition},#{accountPayee},#{remark},#{prepared},#{makingTime})
+    </insert>
+
+	<delete id="delete">
+		delete from customeradvance where receiptId = #{receiptId}
+	</delete>
+
+<select id="selectPositionName" resultType="Position">
+	select * from `position`
+</select>
+</mapper>

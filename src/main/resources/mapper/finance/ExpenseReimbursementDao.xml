@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.finance.ExpenseReimbursementDao">
+
+	<select id="selectAll" parameterType="map" resultType="ExpenseReimbursement">
+	select * from expensereimbursement
+	<where>
+		<if test="Id != '' and Id != null">
+			and Id=#{Id}
+		</if>
+		<if test="reimbursement != '' and reimbursement != null">
+			and reimbursement=#{reimbursement}
+		</if>
+	</where>
+	limit  #{currentage},#{pageSize}
+</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM expensereimbursement
+	</select>
+
+	<select id="selectClerkName" resultType="Clerk">
+		SELECT * FROM clerk
+	</select>
+
+	<insert id="add" parameterType="ExpenseReimbursement">
+        insert into expensereimbursement value(#{Id},#{reason},#{applicationDate},#{accountingDate},#{reimbursement},
+        #{appliedAmount},#{actualAmount},#{prepared})
+    </insert>
+</mapper>

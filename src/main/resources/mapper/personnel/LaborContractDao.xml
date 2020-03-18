@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.personnel.LaborContractDao">
+	<select id="selectAll" parameterType="map" resultType="LaborContract">
+		select * from laborcontract
+		<where>
+			<if test="Id != '' and Id != null">
+				and Id=#{Id}
+			</if>
+			<if test="contractType != '' and contractType != null">
+				and contractType=#{contractType}
+			</if>
+			<if test="officeClerk != '' and officeClerk != null">
+				and officeClerk=#{officeClerk}
+			</if>
+		</where>
+
+		limit  #{currentage},#{pageSize}
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM laborcontract
+	</select>
+
+	<select id="selectClerkName" resultType="Clerk">
+		SELECT * FROM clerk
+	</select>
+
+	<insert id="add" parameterType="LaborContract">
+        insert into laborcontract value(#{Id},#{contractType},#{officeClerk},#{startDate},#{endingDate},
+        #{maturityDate},#{trialDate},#{operator},#{dateOfSigning},#{number},#{changeDate},#{changenumber})
+    </insert>
+</mapper>

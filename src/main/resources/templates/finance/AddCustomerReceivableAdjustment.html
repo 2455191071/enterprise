@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>新增客户应收调整</title>
+    <link rel="stylesheet" href="/static/bots335/css/bootstrap.min.css" />
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/bots335/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            background-color:#333;
+            border-bottom:1px solid #777;
+            width: 100%;
+            height:35px;
+        }
+        ul{
+            margin-top: 9px;
+        }
+        li {
+            list-style: none;
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin-left:-16px;
+        }
+        b{
+            color: white;
+            font-size:12px;
+            font-family:"宋体";
+        }
+        .low-button{
+            width:120px; /* 宽度 */
+            height: 22px; /* 高度 */
+            border-width: 0px; /* 边框宽度 */
+            border-radius:5px; /* 边框半径 */
+            background-color:#F0F0F0;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        .drop-button{
+            width: 120px;
+            height: 22px;
+            border-width: 0px; /* 边框宽度 */
+            border-radius:5px; /* 边框半径 */
+            background-color:#F2F2F2;
+            margin-top: 3px;
+        }
+        .axc{
+            font-size: 12px;
+            color: black;
+            font-family:"宋体";
+        }
+        .dropdown-menu{
+            background-color: steelblue;
+            min-width:100%;
+            border: 0px;
+        }
+        #sbm{
+            margin-left: 600px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="row" id="all">
+    <div class="col-sm-12">
+        <table>
+            <tr>
+                <td>
+                    <div style="padding:3px 0 0 3px;">
+                        <img src="/static/bots335/img/3.jpg" border="0" />
+                    </div>
+                </td>
+                <td>
+                    <p style="color:#ddd; font-size: 12px;">
+                        欢迎访问全管ERP+生产在线试用系统，试用其他产品点击如下链接：
+                        <a href="http://oa.guanli360.com/" target="_blank">OA在线试用系统</a>、
+                        <a href="http://crm.guanli360.com/" target="_blank">CRM在线试用系统</a>、
+                        <a href="http://erp.guanli360.com/" target="_blank">ERP在线试用系统</a>
+                    </p>
+                </td>
+                <td align="right" style="text-align:right;">
+                    <div style="margin:4px 35px 0 0;">
+                        <a title="计算器"><img src="/static/bots335/img/4.jpg" border="0" /></a>
+                        <a title="农历（阴阳日历）"><img src="/static/bots335/img/1.jpg" border="0" /></a>
+                    </div>
+                </td>
+                <td width="40">
+                    <a title="注销退出" style="display:block;padding:4px 0 3px 6px;background-color:#900;border:1px solid #333;">
+                        <img src="/static/bots335/img/5.jpg" border="0" style="display:block;" />
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-2" style="width: 50px;height:670px;margin-left: 30px;background-color:dimgrey;">
+            <img src="/static/bots335/img/2.jpg" />
+            <ul>
+                <li><a><b>办公</b></a></li>
+                <li><a><b>交流</b></a></li>
+                <li><a><b>销售</b></a></li>
+                <li><a><b>采购</b></a></li>
+                <li><a><b>仓储</b></a></li>
+                <li><a><b>项目</b></a></li>
+                <li><a><b>生产</b></a></li>
+                <li><a><b>服务</b></a></li>
+                <li><a><b>后勤</b></a></li>
+                <li><a><b>人事</b></a></li>
+                <li><a><b>财务</b></a></li>
+                <li><a><b>报表</b></a></li>
+                <li><a><b>系统</b></a></li>
+            </ul>
+            <img src="/static/bots335/img/7.jpg" />
+        </div>
+        <div class="col-sm-3" style="background-color: steelblue;width: 150px; height: 670px;">
+            <div class="low">
+                <div class="dropdown">
+                    <button  data-toggle="dropdown" class="low-button">组织结构<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <button role="presentation" class="drop-button">
+                            <a role="menuitem" href="#" class="axc">部门职位</a>
+                        </button>
+                        <button role="presentation" class="drop-button">
+                            <a role="menuitem" href="#" class="axc">群组</a>
+                        </button>
+                        <button role="presentation" class="drop-button">
+                            <a role="menuitem"  href="#" class="axc">职员</a>
+                        </button>
+                        <button role="presentation" class="drop-button">
+                            <a role="menuitem"  href="#" class="axc">诊断</a>
+                        </button>
+                    </ul>
+                </div>
+                <button class="low-button" id="wentoot">我的考勤</button>
+                <button class="low-button" id="hentoot">考勤管理</button>
+                <button class="low-button" id="xentoot">业绩管理</button>
+                <button class="low-button" id="centoot">我的薪酬</button>
+            </div>
+        </div>
+        <div class="col-sm-3" style="background-color:lemonchiffon;width:1335px; height: 670px;" id="welcome">
+            <h4>新增客户应收调整</h4>
+             <hr/>
+             <div class="container" style="margin-right: 100px">
+                 <form class="form-horizontal"  action="/insertCustomerReceivableAdjustment">
+                     <div class="row">
+                         <input type="hidden" class="form-control" name="Id" th:value="${No}" />
+                         <label class="col-sm-2 control-label">客户：</label>
+                         <div class="col-sm-2">
+                             <select name="client" class="form-control" >
+                                 <option value="">--请选择--</option>
+                                 <option th:each="info:${clerkInfo}" th:value="${info.clerkName}" th:text="${info.clerkName}"></option>
+
+                             </select>
+                         </div>
+
+                         <label class="col-sm-2 control-label">调整日期：</label>
+                         <div class="col-sm-2" style="margin-top: 5px">
+                             <input type="date" class="form-control" name="adjustDate"  />
+                         </div>
+                         <label class="col-sm-2 control-label">调整原因：</label>
+                         <div class="col-sm-2">
+                             <input type="text" name="adjustReason">
+                         </div>
+                     </div>
+                     <br/>
+                     <div class="row">
+
+                         <label class="col-sm-2 control-label">调减金额：</label>
+                         <div class="col-sm-2">
+                             <input type="text" name="loweredAmount">
+                         </div>
+                         <label class="col-sm-2 control-label">调增金额：</label>
+                         <div class="col-sm-2">
+                             <input type="text" name="increaseAmount">
+                         </div>
+                         <label class="col-sm-2 control-label">经手人：</label>
+                         <div class="col-sm-2">
+                             <select name="handled" class="form-control" >
+                                 <option value="">--请选择--</option>
+                                 <option th:each="info:${clerkInfo}" th:value="${info.clerkName}" th:text="${info.clerkName}"></option>
+
+                             </select>
+                         </div>
+                     </div>
+                     <br/>
+                     <div class="row">
+                         <div id="sbm">
+                             <input class="btn btn-info btn-sm" type="submit" value="提交">
+                         </div>
+                     </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

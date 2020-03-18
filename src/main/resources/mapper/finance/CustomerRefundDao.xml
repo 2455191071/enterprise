@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.finance.CustomerRefundDao">
+
+	<select id="selectAll" parameterType="map" resultType="CustomerRefund">
+		select * from customerrefund
+		<where>
+			<if test="Id != '' and Id != null">
+				and Id=#{Id}
+			</if>
+			<if test="client != '' and client != null">
+				and client=#{client}
+			</if>
+			<if test="salesman != '' and salesman != null">
+				and salesman=#{salesman}
+			</if>
+		</where>
+		limit  #{currentage},#{pageSize}
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM customerrefund
+	</select>
+
+	<select id="selectClerkName" resultType="Clerk">
+		SELECT * FROM clerk
+	</select>
+
+	<insert id="add" parameterType="CustomerRefund">
+        insert into customerrefund value(#{Id},#{deadline},#{client},#{shouldBack},#{advanceRefund},
+        #{collectingRealBack},#{realBack},#{paid},#{accountingDate},#{salesman},#{prepared},#{remark})
+    </insert>
+
+	<insert id="update" parameterType="CustomerRefund">
+		update customerrefund set deadline=#{deadline},client=#{client},shouldBack=#{shouldBack},advanceRefund=#{advanceRefund},
+        collectingRealBack=#{collectingRealBack},realBack=#{realBack},paid=#{paid},accountingDate=#{accountingDate},
+        salesman=#{salesman},prepared=#{prepared},remark=#{remark}
+        where Id = #{Id}
+    </insert>
+
+	<delete id="delete">
+		delete from customerrefund where Id = #{Id}
+	</delete>
+
+	<select id="findById" resultType="CustomerRefund">
+		select * from customerrefund where Id = #{Id}
+	</select>
+</mapper>

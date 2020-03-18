@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>K101班</title>
+    <link rel="stylesheet" href="static/bots335/css/bootstrap.min.css" />
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/bots335/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #tab{
+        background-color:#333;
+        border-bottom:1px solid #777;
+        width: 100%;
+        height:35px;
+    }
+    ul{
+        margin-top: 9px;
+    }
+    li {
+        list-style: none;
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        margin-left:-16px;
+    }
+    b{
+        color: white;
+        font-size:12px;
+        font-family:"宋体";
+    }
+    .low-button{
+        width:120px; /* 宽度 */
+        height: 22px; /* 高度 */
+        border-width: 0px; /* 边框宽度 */
+        border-radius:5px; /* 边框半径 */
+        background-color:#F0F0F0;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    .drop-button{
+        width: 120px;
+        height: 22px;
+        border-width: 0px; /* 边框宽度 */
+        border-radius:5px; /* 边框半径 */
+        background-color:#F2F2F2;
+        margin-top: 3px;
+    }
+    .axc{
+        font-size: 12px;
+        color: black;
+        font-family:"宋体";
+    }
+    .dropdown-menu{
+        background-color: steelblue;
+        min-width:100%;
+        border: 0px;
+    }
+
+</style>
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="tab">
+                    <tr>
+                        <td>
+                            <div style="padding:3px 0 0 3px;">
+                                <img src="static/bots335/img/1.jpg" border="0" />
+                            </div>
+                        </td>
+                        <td>
+                            <p style="color:#ddd; font-size: 12px;">
+                                欢迎访问全管ERP+生产在线试用系统，试用其他产品点击如下链接：
+                                <a href="http://oa.guanli360.com/" target="_blank">OA在线试用系统</a>、
+                                <a href="http://crm.guanli360.com/" target="_blank">CRM在线试用系统</a>、
+                                <a href="http://erp.guanli360.com/" target="_blank">ERP在线试用系统</a>
+                            </p>
+                        </td>
+                        <td align="right" style="text-align:right;">
+                            <div style="margin:4px 35px 0 0;">
+                                <a title="计算器"><img src="static/bots335/img/4.jpg" border="0" /></a>
+                                <a title="农历（阴阳日历）"><img src="static/bots335/img/1.jpg" border="0" /></a>
+                            </div>
+                        </td>
+                        <td width="40">
+                            <a title="注销退出" style="display:block;padding:4px 0 3px 6px;background-color:#900;border:1px solid #333;">
+                                <img src="" border="0" style="display:block;" />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-sm-2" style="width: 50px;height:600px;margin-left: 30px;background-color:dimgrey;">
+                    <img src="static/bots335/img/2.jpg" />
+                    <ul>
+                        <li><a><b>办公</b></a></li>
+                        <li><a><b>交流</b></a></li>
+                        <li><a><b>销售</b></a></li>
+                        <li><a><b>采购</b></a></li>
+                        <li><a><b>仓储</b></a></li>
+                        <li><a><b>项目</b></a></li>
+                        <li><a><b>生产</b></a></li>
+                        <li><a><b>服务</b></a></li>
+                        <li><a><b>后勤</b></a></li>
+                        <li><a><b>人事</b></a></li>
+                        <li><a><b>财务</b></a></li>
+                        <li><a><b>报表</b></a></li>
+                        <li><a><b>系统</b></a></li>
+                    </ul>
+                    <img src="static/bots335/img/7.jpg" />
+                </div>
+                <div class="col-sm-3" style="background-color: steelblue;width: 150px; height: 600px;">
+                    <div class="low">
+                        <button class="low-button" id="wentoot">仓储单据总览</button>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">销售收发货<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">销售发货</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">退订发货</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem"  href="#" class="axc">调换收发货</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">采购收发货<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">采购发货</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">采购退订发货</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem"  href="#" class="axc">采购调换</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">项目出入库<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">领料出库</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">退料入库</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">生产出入库<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">生产领料</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">外协出入库<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">外协发料</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">调拔<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">同阶调拔</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">调整<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">盘点</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">报损</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem"  href="#" class="axc">报溢</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="/ln/list" class="axc">成本调整</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem"  href="/ln/Delist" class="axc">物料拆装</a>
+                                </button>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">库存管理<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="/over/ovlist" class="axc">库存</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">批号库存</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">库存流水</a>
+                                </button>
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">商品序列号</a>
+                                </button>
+                            </ul>
+                        </div>
+                        <div class="dropdown">
+                            <button  data-toggle="dropdown" class="low-button">统计分析<span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <button role="presentation" class="drop-button">
+                                    <a role="menuitem" href="#" class="axc">出入库统计</a>
+                                </button>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3" style="background-color:lemonchiffon;width:1335px; height: 600px;" id="welcome">
+
+
+                    <form action="CHLaborContract">
+                        <div class="row" style="margin-top: 10px">
+
+                            <div class="col-sm-1">编号:</div>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" name="Id"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-sm-3">类型:</div>
+                                <div class="col-sm-8">
+                                    <select name="contractType" class="form-control">
+                                        <option value="">--请选择--</option>
+                                        <option value="试用期合同">试用期合同</option>
+                                        <option value="正式合同">正式合同</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="col-sm-3">职员:</div>
+                                <div class="col-sm-8">
+                                    <select name="officeClerk" class="form-control" >
+                                        <option value="">--请选择--</option>
+                                        <option th:each="info:${clerkInfo}" th:value="${info.clerkName}" th:text="${info.clerkName}"></option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="row" style="margin-top: 10px;margin-right: 10px">
+                            <div class="col-sm-12" style="text-align:right">
+                                <input class="btn btn-info btn-sm" type="submit" value="提交查询">
+                                <input class="btn btn-info btn-sm" type="button" value="添加劳动合同" onclick="add()">
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered table-hover table-condensed">
+                                <caption>劳动合同管理</caption>
+                                <thead >
+                                <tr class="info">
+                                    <th>编号</th>
+                                    <th>合同类型</th>
+                                    <th>职员</th>
+                                    <th>起始日期</th>
+                                    <th>结束日期</th>
+                                    <th>到期日期</th>
+                                    <th>试用日期</th>
+                                    <th>经办人</th>
+                                    <th>签订日期</th>
+
+                                </tr>
+                                </thead>
+                                <tbody style="background: lightgrey">
+                                <tr th:each="lst:${info.list}">
+                                    <td th:text="${lst.Id}"></td>
+                                    <td th:text="${lst.contractType}"></td>
+                                    <td th:text="${lst.officeClerk}"></td>
+                                    <td th:text="${lst.startDate}"></td>
+                                    <td th:text="${lst.endingDate}"></td>
+                                    <td th:text="${lst.maturityDate}"></td>
+                                    <td th:text="${lst.trialDate}"></td>
+                                    <td th:text="${lst.operator}"></td>
+                                    <td th:text="${lst.dateOfSigning}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-4"></div>
+                    共[[${info.totalCount}]]条记录 当前第[[${info.currentPage}]]页/共[[${info.totalPage}]]页
+                        <div class="col-sm-4">
+                            <ul class="pagination pagination-sm">
+                                <li><a th:href="'CHLaborContract?index='+1">第一页</a></li>
+                                <li><a th:href="'CHLaborContract?index='+${info.currentPage>1?info.currentPage-1:1}">上一页</a></li>
+                                <li><a th:href="'CHLaborContract?index='+${info.currentPage<info.totalPage?info.currentPage+1:info.totalPage}">下一页</a></li>
+                                <li><a th:href="'CHLaborContract?index='+${info.totalPage}">尾页</a></li>
+                            </ul>
+                        </div>
+
+                     </div>
+
+
+        </div>
+    </body>
+    <script>
+        function add() {
+            window.location.href="/addLaborContract";
+        }
+    </script>
+</html>

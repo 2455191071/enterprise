@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.personnel.EmploymentDao">
+	<select id="selectAll" parameterType="map" resultType="Employment">
+		select * from employment
+		where 1=1
+		<if test="name != '' and name != null">
+			and name=#{name}
+		</if>
+		<if test="sex != '' and sex != null">
+			and sex=#{sex}
+		</if>
+		<if test="state != '' and state != null">
+			and state=#{state}
+		</if>
+
+		limit  #{currentage},#{pageSize}
+	</select>
+
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM employment
+	</select>
+
+</mapper>

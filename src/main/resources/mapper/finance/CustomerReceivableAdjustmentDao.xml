@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.finance.CustomerReceivableAdjustmentDao">
+
+	<select id="selectAll" parameterType="map" resultType="CustomerReceivableAdjustment">
+		select * from customerreceivableadjustment
+		<where>
+			<if test="Id != '' and Id != null">
+				and Id=#{Id}
+			</if>
+			<if test="client != '' and client != null">
+				and client=#{client}
+			</if>
+			<if test="handled != '' and handled != null">
+				and handled=#{handled}
+			</if>
+		</where>
+		limit  #{currentage},#{pageSize}
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM customerreceivableadjustment
+	</select>
+
+	<select id="selectClerkName" resultType="Clerk">
+		SELECT * FROM clerk
+	</select>
+
+	<insert id="add" parameterType="CustomerReceivableAdjustment">
+        insert into customerreceivableadjustment value(#{Id},#{adjustDate},#{client},#{adjustReason},#{loweredAmount},
+        #{increaseAmount},#{handled})
+    </insert>
+
+	<insert id="update" parameterType="CustomerReceivableAdjustment">
+		update customerreceivableadjustment set adjustDate=#{adjustDate},client=#{client},adjustReason=#{adjustReason},
+		loweredAmount=#{loweredAmount},increaseAmount=#{increaseAmount},handled=#{handled}
+        where Id = #{Id}
+    </insert>
+
+	<delete id="delete">
+		delete from customerreceivableadjustment where Id = #{Id}
+	</delete>
+
+	<select id="findById" resultType="CustomerReceivableAdjustment">
+		select * from customerreceivableadjustment where Id = #{Id}
+	</select>
+</mapper>

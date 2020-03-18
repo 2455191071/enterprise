@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 映射文件与持久化接口通过namespace属性进行关联，-->
+<mapper namespace="com.csdj.enterprise.dao.finance.CustomerPaymentDao">
+
+	<select id="selectAll" parameterType="map" resultType="CustomerPayment">
+		select * from customerpayment
+		<where>
+			<if test="Id != '' and Id != null">
+				and Id=#{Id}
+			</if>
+			<if test="client != '' and client != null">
+				and client=#{client}
+			</if>
+			<if test="salesman != '' and salesman != null">
+				and salesman=#{salesman}
+			</if>
+		</where>
+		limit  #{currentage},#{pageSize}
+	</select>
+
+	<select id="getCount" resultType="int">
+		SELECT COUNT(1) FROM customerpayment
+	</select>
+
+	<select id="selectClerkName" resultType="Clerk">
+		SELECT * FROM clerk
+	</select>
+
+	<insert id="add" parameterType="CustomerPayment">
+        insert into customerpayment value(#{Id},#{client},#{deadline},#{salesman},#{total},
+        #{serviceCharge},#{discounts},#{crop},#{collection},#{makingTime},#{prepared})
+    </insert>
+
+	<delete id="delete">
+		delete from customerpayment where Id = #{Id}
+	</delete>
+
+
+</mapper>
